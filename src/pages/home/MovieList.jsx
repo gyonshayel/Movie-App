@@ -18,6 +18,9 @@ export function MovieList({ id, url, apiKey, listName }) {
       setLoading(true);
       setError(null);
 
+      // Wait before calling the API (simulate delay)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Record current scroll position
       const scrollLeftBefore = containerRef.current?.scrollLeft || 0;
 
@@ -47,14 +50,6 @@ export function MovieList({ id, url, apiKey, listName }) {
   };
 
   useEffect(() => {
-    if (page > 1) {
-      const timeout = setTimeout(() => {
-        setLoading(true);
-        fetchMovieListData(page);
-      }, 800);
-
-      return () => clearTimeout(timeout);
-    }
     fetchMovieListData(page);
   }, [page]);
 
@@ -95,8 +90,13 @@ export function MovieList({ id, url, apiKey, listName }) {
           );
         })}
 
-        {loading && <Loading />}
+        <div
+          className={loading ? "self-center min-w-14 min-h-14 p-2" : "hidden"}
+        >
+          <Loading />
+        </div>
         {error && <Error />}
+
         {hasMore && !loading && (
           <div ref={observerRef} className="w-1 h-1"></div>
         )}
