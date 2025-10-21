@@ -77,7 +77,7 @@ export function MovieList({ id, url, apiKey, listName }) {
       <div
         ref={containerRef}
         id={id}
-        className="flex overflow-x-scroll gap-1.5 mt-2 mb-4 pb-4"
+        className="flex overflow-x-scroll gap-1.5 mt-2 mb-4 py-4"
       >
         {movieList.map((item, index) => {
           return (

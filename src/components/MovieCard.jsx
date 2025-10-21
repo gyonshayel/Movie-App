@@ -9,7 +9,7 @@ import {
 
 export function MovieCard({ name, year, poster }) {
   return (
-    <Card className="min-w-[125px] lg:min-w-[150px] max-w-[150px] p-1 gap-0.5 hover:scale-[1.03] transition-transform">
+    <Card className="min-w-[125px] max-w-[150px] lg:min-w-[150px] p-1 hover:scale-[1.03] transition-transform">
       <CardContent className="p-1">
         <img
           src={poster || "https://placehold.co/200x300"}
