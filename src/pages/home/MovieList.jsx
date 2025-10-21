@@ -1,0 +1,106 @@
+import { useEffect, useState, useRef } from "react";
+import { Loading } from "../../components/Loading";
+import { Error } from "../../components/Error";
+import { MovieCard } from "../../components/MovieCard";
+import { getYear } from "../../utils/getYear";
+
+export function MovieList({ id, url, apiKey, listName }) {
+  const [movieList, setMovieList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const observerRef = useRef(null);
+  const containerRef = useRef(null);
+
+  const fetchMovieListData = async (pageNumber) => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Record current scroll position
+      const scrollLeftBefore = containerRef.current?.scrollLeft || 0;
+
+      const apiCall = `${url}?api_key=${apiKey}&page=${pageNumber}`;
+      const response = await fetch(apiCall);
+
+      if (!response.ok) throw new Error("Failed to fetch data from the server");
+
+      const data = await response.json();
+      setMovieList((prev) => [...prev, ...data.results]);
+
+      // Restore previous scroll position
+      requestAnimationFrame(() => {
+        if (containerRef.current) {
+          containerRef.current.scrollLeft = scrollLeftBefore;
+        }
+      });
+
+      if (pageNumber >= data.total_pages) {
+        setHasMore(false);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (page > 1) {
+      const timeout = setTimeout(() => {
+        setLoading(true);
+        fetchMovieListData(page);
+      }, 800);
+
+      return () => clearTimeout(timeout);
+    }
+    fetchMovieListData(page);
+  }, [page]);
+
+  // Infinite scroll observer
+  useEffect(() => {
+    if (!hasMore || loading) return;
+
+    const container = document.getElementById(id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setPage((prev) => prev + 1);
+        }
+      },
+      { root: container, threshold: 0.5 }
+    );
+
+    if (observerRef.current) observer.observe(observerRef.current);
+    return () => observer.disconnect();
+  }, [hasMore, loading]);
+
+  return (
+    <>
+      <h2 className="text-2xl font-bold">{listName}</h2>
+      <div
+        ref={containerRef}
+        id={id}
+        className="flex overflow-x-scroll gap-1.5 mt-2 mb-4 pb-4"
+      >
+        {movieList.map((item, index) => {
+          return (
+            <MovieCard
+              key={index}
+              name={item.title}
+              year={getYear(item.release_date)}
+              poster={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+            />
+          );
+        })}
+
+        {loading && <Loading />}
+        {error && <Error />}
+        {hasMore && !loading && (
+          <div ref={observerRef} className="w-1 h-1"></div>
+        )}
+      </div>
+    </>
+  );
+}

@@ -9,11 +9,12 @@ import {
 
 export function MovieCard({ name, year, poster }) {
   return (
-    <Card className="w-full max-w-[150px] p-1 gap-0.5">
+    <Card className="min-w-[125px] lg:min-w-[150px] max-w-[150px] p-1 gap-0.5 hover:scale-[1.03] transition-transform">
       <CardContent className="p-1">
         <img
           src={poster || "https://placehold.co/200x300"}
-          alt={name}
+          alt={`Poster of ${name}`}
+          loading="lazy"
           className="w-full h-auto rounded-md object-cover aspect-[2/3]"
         />
       </CardContent>
