@@ -45,16 +45,16 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
     return () => clearTimeout(timeoutRef.current);
   }, [query, apiKey]);
 
-  const handleSelect = (movie) => {
-    setShowDropdown(false);
-    setQuery("");
-    if (onSelectMovie) onSelectMovie(movie.id);
-  };
-
   const handleSearch = (event) => {
     event.preventDefault();
     setShowDropdown(false);
     if (onSearch) onSearch(query);
+  };
+
+  const handleSelect = (movie) => {
+    setShowDropdown(false);
+    setQuery("");
+    if (onSelectMovie) onSelectMovie(movie.id);
   };
 
   return (

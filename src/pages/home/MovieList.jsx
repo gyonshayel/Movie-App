@@ -4,7 +4,7 @@ import { Error } from "../../components/Error";
 import { MovieCard } from "../../components/MovieCard";
 import { getYear } from "../../utils/getYear";
 
-export function MovieList({ id, url, apiKey, listName, type }) {
+export function MovieList({ id, url, apiKey, listName }) {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -24,10 +24,7 @@ export function MovieList({ id, url, apiKey, listName, type }) {
       // Record current scroll position
       const scrollLeftBefore = containerRef.current?.scrollLeft || 0;
 
-      const apiCall =
-        type !== ""
-          ? `${url}?api_key=${apiKey}&page=${pageNumber}`
-          : `${url}?api_key=${apiKey}&query=${type}&page=${pageNumber}`;
+      const apiCall = `${url}?api_key=${apiKey}&page=${pageNumber}`;
       const response = await fetch(apiCall);
 
       if (!response.ok) throw new Error("Failed to fetch data from the server");
@@ -54,7 +51,7 @@ export function MovieList({ id, url, apiKey, listName, type }) {
 
   useEffect(() => {
     fetchMovieListData(page);
-  }, [page]);
+  }, [page, url, apiKey]);
 
   // Infinite scroll observer
   useEffect(() => {

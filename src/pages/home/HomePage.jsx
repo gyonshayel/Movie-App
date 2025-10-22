@@ -1,8 +1,6 @@
 import { MovieList } from "./MovieList";
 
-export function HomePage() {
-  const apiKey = "bc63ebee257313f7280d383f25f847ae";
-
+export function HomePage({ apiKey }) {
   return (
     <>
       <MovieList
@@ -10,7 +8,6 @@ export function HomePage() {
         url={"https://api.themoviedb.org/3/movie/top_rated"}
         apiKey={apiKey}
         listName={"Top Picks"}
-        type={""}
       />
 
       <MovieList
@@ -18,7 +15,6 @@ export function HomePage() {
         url={"https://api.themoviedb.org/3/movie/popular"}
         apiKey={apiKey}
         listName={"Popular"}
-        type={""}
       />
 
       <MovieList
@@ -26,7 +22,6 @@ export function HomePage() {
         url={"https://api.themoviedb.org/3/movie/now_playing"}
         apiKey={apiKey}
         listName={"Now Playing"}
-        type={""}
       />
 
       <MovieList
@@ -34,7 +29,6 @@ export function HomePage() {
         url={"https://api.themoviedb.org/3/movie/upcoming"}
         apiKey={apiKey}
         listName={"Upcoming"}
-        type={""}
       />
     </>
   );
