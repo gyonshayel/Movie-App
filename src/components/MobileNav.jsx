@@ -10,8 +10,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
+import { getYear } from "../utils/getYear";
 
-export function MobileNav({ searchTxt, setSearchTxt, handleSearch }) {
+export function MobileNav({
+  query,
+  setQuery,
+  suggestions,
+  showDropdown,
+  setShowDropdown,
+  handleSelect,
+}) {
   return (
     <Sheet className="lg:hidden">
       <SheetTrigger asChild>
@@ -28,20 +36,42 @@ export function MobileNav({ searchTxt, setSearchTxt, handleSearch }) {
           <label htmlFor="search-sm" className="hidden">
             Search
           </label>
-          <Input
-            className="rounded-2xl"
-            autoFocus
-            id="search-sm"
-            type="text"
-            value={searchTxt}
-            onChange={(e) => setSearchTxt(e.target.value)}
-          />
+          <div className="w-[100%] relative">
+            <Input
+              className="rounded-2xl"
+              autoFocus
+              id="search-sm"
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
+            />
+
+            {/* Suggestion Dropdown */}
+            {showDropdown && suggestions.length > 0 && (
+              <ul className="absolute left-0 top-full bg-background border border-border rounded-md z-50 overflow-y-auto w-[100%]">
+                {suggestions.map((movie) => (
+                  <li
+                    key={movie.id}
+                    onClick={() => handleSelect(movie)}
+                    className="px-3 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors"
+                  >
+                    {movie.title}{" "}
+                    {movie.release_date && (
+                      <span className="text-muted-foreground text-sm">
+                        ({getYear(movie.release_date)})
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
           <Button
             className="rounded-[50%]"
             variant="outline"
             size="icon"
             aria-label="Submit"
-            onClick={handleSearch}
           >
             <svg
               id="search-btn__icon"
