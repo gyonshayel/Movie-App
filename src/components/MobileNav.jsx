@@ -31,7 +31,9 @@ export function MobileNav({
       <SheetContent>
         <SheetHeader className="pb-0">
           <SheetTitle>Search</SheetTitle>
-          <SheetDescription>Search for movies & tv shows.</SheetDescription>
+          <SheetDescription className="sr-only">
+            Search for movies & tv shows.
+          </SheetDescription>
         </SheetHeader>
         <form className="flex flex-nowrap gap-4 p-4 pt-0">
           <label htmlFor="search-sm" className="hidden">
@@ -43,6 +45,8 @@ export function MobileNav({
               autoFocus
               id="search-sm"
               type="text"
+              placeholder="Search for movies & tv shows."
+              required
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
@@ -52,18 +56,20 @@ export function MobileNav({
             {showDropdown && suggestions.length > 0 && (
               <ul className="absolute left-0 top-full bg-background border border-border rounded-md z-50 overflow-y-auto w-[100%]">
                 {suggestions.map((movie) => (
-                  <li
-                    key={movie.id}
-                    onClick={() => handleSelect(movie)}
-                    className="px-3 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors"
-                  >
-                    {movie.title}{" "}
-                    {movie.release_date && (
-                      <span className="text-muted-foreground text-sm">
-                        ({getYear(movie.release_date)})
-                      </span>
-                    )}
-                  </li>
+                  <SheetTrigger asChild key={movie.id}>
+                    <li
+                      key={movie.id}
+                      onClick={() => handleSelect(movie)}
+                      className="px-3 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors"
+                    >
+                      {movie.title}{" "}
+                      {movie.release_date && (
+                        <span className="text-muted-foreground text-sm">
+                          ({getYear(movie.release_date)})
+                        </span>
+                      )}
+                    </li>
+                  </SheetTrigger>
                 ))}
               </ul>
             )}

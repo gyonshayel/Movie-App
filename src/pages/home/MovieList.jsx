@@ -83,6 +83,7 @@ export function MovieList({ id, url, apiKey, listName }) {
           return (
             <MovieCard
               key={index}
+              id={item.id}
               name={item.title}
               year={getYear(item.release_date)}
               poster={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
