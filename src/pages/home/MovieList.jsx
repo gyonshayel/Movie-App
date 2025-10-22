@@ -4,7 +4,7 @@ import { Error } from "../../components/Error";
 import { MovieCard } from "../../components/MovieCard";
 import { getYear } from "../../utils/getYear";
 
-export function MovieList({ id, url, apiKey, listName }) {
+export function MovieList({ id, url, apiKey, listName, type }) {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -24,7 +24,10 @@ export function MovieList({ id, url, apiKey, listName }) {
       // Record current scroll position
       const scrollLeftBefore = containerRef.current?.scrollLeft || 0;
 
-      const apiCall = `${url}?api_key=${apiKey}&page=${pageNumber}`;
+      const apiCall =
+        type !== ""
+          ? `${url}?api_key=${apiKey}&page=${pageNumber}`
+          : `${url}?api_key=${apiKey}&query=${type}&page=${pageNumber}`;
       const response = await fetch(apiCall);
 
       if (!response.ok) throw new Error("Failed to fetch data from the server");

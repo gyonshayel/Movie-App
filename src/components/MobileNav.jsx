@@ -19,6 +19,7 @@ export function MobileNav({
   showDropdown,
   setShowDropdown,
   handleSelect,
+  handleSearch,
 }) {
   return (
     <Sheet className="lg:hidden">
@@ -72,6 +73,7 @@ export function MobileNav({
             variant="outline"
             size="icon"
             aria-label="Submit"
+            onClick={handleSearch}
           >
             <svg
               id="search-btn__icon"

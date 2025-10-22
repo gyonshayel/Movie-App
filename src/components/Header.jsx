@@ -5,34 +5,12 @@ import { MobileNav } from "./MobileNav";
 import { Error } from "./Error";
 import { getYear } from "../utils/getYear";
 
-export function Header({ apiKey, onSelectMovie }) {
+export function Header({ apiKey, onSearch, onSelectMovie }) {
   const [query, setQuery] = useState("");
   const [error, setError] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const timeoutRef = useRef(null);
-  // const [debouncedQuery, setDebouncedQuery] = useState("");
-
-  // useEffect(() => {
-  //   const handler = setTimeout(() => {
-  //     setDebouncedQuery(query);
-  //   }, 500);
-
-  //   return () => clearTimeout(handler);
-  // }, [query]);
-
-  // useEffect(() => {
-  //   if (debouncedQuery.trim !== "") {
-  //     onSearch(debouncedQuery);
-  //   }
-  // }, [debouncedQuery, onSearch]);
-
-  // const handleSearch = (event) => {
-  //   if (onSearch) {
-  //     event.preventDefault();
-  //     onSearch(query);
-  //   }
-  // };
 
   // Debounced search with the dropdown
   useEffect(() => {
@@ -68,9 +46,15 @@ export function Header({ apiKey, onSelectMovie }) {
   }, [query, apiKey]);
 
   const handleSelect = (movie) => {
-    setQuery(movie.title);
     setShowDropdown(false);
-    if (onSelectMovie) onSelectMovie(movie);
+    setQuery("");
+    if (onSelectMovie) onSelectMovie(movie.id);
+  };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    setShowDropdown(false);
+    if (onSearch) onSearch(query);
   };
 
   return (
@@ -117,6 +101,7 @@ export function Header({ apiKey, onSelectMovie }) {
           variant="outline"
           size="icon"
           aria-label="Submit"
+          onClick={handleSearch}
         >
           <svg
             id="search-btn__icon"
@@ -147,6 +132,7 @@ export function Header({ apiKey, onSelectMovie }) {
         showDropdown={showDropdown}
         setShowDropdown={setShowDropdown}
         handleSelect={handleSelect}
+        handleSearch={handleSearch}
       />
       {error && <Error />}
     </header>
