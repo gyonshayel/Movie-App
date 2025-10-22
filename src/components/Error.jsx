@@ -1,3 +1,7 @@
-export function Error(message) {
-  return <></>;
+export function Error({ message }) {
+  return (
+    <>
+      <div>{message}</div>
+    </>
+  );
 }

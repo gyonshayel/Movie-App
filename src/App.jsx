@@ -6,7 +6,6 @@ import "./App.css";
 function App() {
   const handleSearch = (query) => {
     console.log("Search for:", query);
-    // Perform search logic here...
   };
 
   return (

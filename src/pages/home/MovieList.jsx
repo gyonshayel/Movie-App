@@ -90,11 +90,10 @@ export function MovieList({ id, url, apiKey, listName }) {
           );
         })}
 
-        <div
-          className={loading ? "self-center min-w-14 min-h-14 p-2" : "hidden"}
-        >
+        <div className="self-center min-w-14 min-h-14 p-2">
           <Loading />
         </div>
+
         {error && <Error />}
 
         {hasMore && !loading && (
