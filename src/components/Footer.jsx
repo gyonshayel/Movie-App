@@ -2,7 +2,7 @@ import { ModeToggle } from "./mode-toggle";
 
 export function Footer() {
   return (
-    <footer className="flex justify-between items-center gap-4 my-10 mx-4">
+    <footer className="flex justify-between items-center gap-4 my-4 mx-4">
       <span>
         Powered By
         <a href="https://www.themoviedb.org/" target="_blank">

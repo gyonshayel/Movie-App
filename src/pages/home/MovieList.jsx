@@ -4,7 +4,7 @@ import { Error } from "../../components/Error";
 import { MovieCard } from "../../components/MovieCard";
 import { getYear } from "../../utils/getYear";
 
-export function MovieList({ id, url, apiKey, listName }) {
+export function MovieList({ id, url, listName }) {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -24,7 +24,7 @@ export function MovieList({ id, url, apiKey, listName }) {
       // Record current scroll position
       const scrollLeftBefore = containerRef.current?.scrollLeft || 0;
 
-      const apiCall = `${url}?api_key=${apiKey}&page=${pageNumber}`;
+      const apiCall = `${url}&page=${pageNumber}`;
       const response = await fetch(apiCall);
 
       if (!response.ok) throw new Error("Failed to fetch data from the server");
@@ -51,7 +51,7 @@ export function MovieList({ id, url, apiKey, listName }) {
 
   useEffect(() => {
     fetchMovieListData(page);
-  }, [page, url, apiKey]);
+  }, [page, url]);
 
   // Infinite scroll observer
   useEffect(() => {
@@ -69,7 +69,7 @@ export function MovieList({ id, url, apiKey, listName }) {
 
     if (observerRef.current) observer.observe(observerRef.current);
     return () => observer.disconnect();
-  }, [hasMore, loading]);
+  }, [hasMore, loading, id]);
 
   return (
     <>
@@ -91,7 +91,11 @@ export function MovieList({ id, url, apiKey, listName }) {
           );
         })}
 
-        <div className="self-center min-w-14 min-h-14 p-2">
+        <div
+          className={
+            loading === false ? "hidden" : "self-center min-w-14 min-h-14 p-2"
+          }
+        >
           <Loading />
         </div>
 

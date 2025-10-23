@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router";
 import { SearchBar } from "./SearchBar";
 import { MobileNav } from "./MobileNav";
 import { Error } from "./Error";
@@ -47,7 +48,9 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
     <header className="sticky top-0 z-50 flex items-center justify-between px-4 py-3 mb-8 bg-background border-b border-border shadow-sm">
       {/* Logo */}
       <div className="">
-        <h1 className="text-3xl font-semibold tracking-tight">Movie DB</h1>
+        <Link to="/">
+          <h1 className="text-3xl font-semibold tracking-tight">Movie DB</h1>
+        </Link>
       </div>
 
       <div className="hidden lg:block grow lg:mx-16">
