@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from "./components/theme-provider";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 import { HomePage } from "./pages/home/HomePage";
 import { SearchResultsPage } from "./pages/search/SearchResultsPage";
 import { MovieDetailsPage } from "./pages/details/MovieDetailsPage";
@@ -18,13 +19,14 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
         <HeaderWithNavigation apiKey={apiKey} />
-        <main>
+        <main className="min-h-screen">
           <Routes>
             <Route path="/" element={<HomePage apiKey={apiKey} />} />
             <Route path="/search/:query" element={<SearchResultsPage />} />
             <Route path="/search/:id/details" element={<MovieDetailsPage />} />
           </Routes>
         </main>
+        <Footer />
       </Router>
     </ThemeProvider>
   );
