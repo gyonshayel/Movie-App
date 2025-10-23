@@ -11,6 +11,21 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const timeoutRef = useRef(null);
+  const dropdownRef = useRef(null);
+
+  // Closing suggestion when clicked outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
 
   // Debounced search with the dropdown
   useEffect(() => {
@@ -66,7 +81,7 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
 
       {/* Search bar for larger screens) */}
       <form className="hidden grow lg:flex items-center gap-2 mx-16 max-w-3xl">
-        <div className="w-[100%] relative">
+        <div ref={dropdownRef} className="w-[100%] relative">
           <Input
             className="lg:block rounded-2xl"
             id="search-lg"
@@ -133,6 +148,7 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
         setShowDropdown={setShowDropdown}
         handleSelect={handleSelect}
         handleSearch={handleSearch}
+        dropdownRef={dropdownRef}
       />
       {error && <Error />}
     </header>

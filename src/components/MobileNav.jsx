@@ -21,6 +21,7 @@ export function MobileNav({
   setShowDropdown,
   handleSelect,
   handleSearch,
+  dropdownRef,
 }) {
   const [open, setOpen] = useState(false);
 
@@ -51,7 +52,7 @@ export function MobileNav({
           <label htmlFor="search-sm" className="hidden">
             Search
           </label>
-          <div className="w-[100%] relative">
+          <div ref={dropdownRef} className="w-[100%] relative">
             <Input
               className="rounded-2xl"
               autoFocus
