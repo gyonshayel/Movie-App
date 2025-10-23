@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -21,13 +22,23 @@ export function MobileNav({
   handleSelect,
   handleSearch,
 }) {
+  const [open, setOpen] = useState(false);
+
+  // For the search button
+  const handleSearchClick = (event) => {
+    if (!query.trim()) return;
+    handleSearch(event);
+    setOpen(false);
+  };
+
   return (
-    <Sheet className="lg:hidden">
+    <Sheet open={open} onOpenChange={setOpen} className="lg:hidden">
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="lg:hidden">
           <Menu className="h-6 w-6" />
         </Button>
       </SheetTrigger>
+
       <SheetContent>
         <SheetHeader className="pb-0">
           <SheetTitle>Search</SheetTitle>
@@ -35,6 +46,7 @@ export function MobileNav({
             Search for movies & tv shows.
           </SheetDescription>
         </SheetHeader>
+
         <form className="flex flex-nowrap gap-4 p-4 pt-0">
           <label htmlFor="search-sm" className="hidden">
             Search
@@ -56,20 +68,21 @@ export function MobileNav({
             {showDropdown && suggestions.length > 0 && (
               <ul className="absolute left-0 top-full bg-background border border-border rounded-md z-50 overflow-y-auto w-[100%]">
                 {suggestions.map((movie) => (
-                  <SheetTrigger asChild key={movie.id}>
-                    <li
-                      key={movie.id}
-                      onClick={() => handleSelect(movie)}
-                      className="px-3 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors"
-                    >
-                      {movie.title}{" "}
-                      {movie.release_date && (
-                        <span className="text-muted-foreground text-sm">
-                          ({getYear(movie.release_date)})
-                        </span>
-                      )}
-                    </li>
-                  </SheetTrigger>
+                  <li
+                    key={movie.id}
+                    onClick={() => {
+                      handleSelect(movie);
+                      setOpen(false);
+                    }}
+                    className="px-3 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors"
+                  >
+                    {movie.title}{" "}
+                    {movie.release_date && (
+                      <span className="text-muted-foreground text-sm">
+                        ({getYear(movie.release_date)})
+                      </span>
+                    )}
+                  </li>
                 ))}
               </ul>
             )}
@@ -79,7 +92,7 @@ export function MobileNav({
             variant="outline"
             size="icon"
             aria-label="Submit"
-            onClick={handleSearch}
+            onClick={handleSearchClick}
           >
             <svg
               id="search-btn__icon"
