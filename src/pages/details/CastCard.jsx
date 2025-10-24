@@ -9,7 +9,7 @@ import {
 
 export function CastCard({ name, character, profile }) {
   return (
-    <Card className="min-w-[125px] max-w-[150px] lg:min-w-[150px] p-1 hover:scale-[1.03] transition-transform">
+    <Card className="min-w-[125px] max-w-[150px] lg:min-w-[150px] p-1">
       <CardContent className="p-1">
         <img
           src={profile || "https://placehold.co/200x300"}
