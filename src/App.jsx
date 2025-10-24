@@ -29,7 +29,7 @@ function App() {
               />
               <Route
                 path="/search/:id/details"
-                element={<MovieDetailsPage />}
+                element={<MovieDetailsPage apiKey={apiKey} />}
               />
             </Routes>
           </main>
