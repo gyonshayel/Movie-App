@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { MovieList } from "../home/MovieList";
+import { MovieList } from "../../components/MovieList";
 
 export function SearchResultsPage({ apiKey }) {
   const { query } = useParams();

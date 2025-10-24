@@ -1,4 +1,4 @@
-import { MovieList } from "./MovieList";
+import { MovieList } from "../../components/MovieList";
 
 export function HomePage({ apiKey }) {
   return (

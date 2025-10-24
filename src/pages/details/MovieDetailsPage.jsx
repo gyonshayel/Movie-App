@@ -4,7 +4,7 @@ import { TopLevelDetails } from "./TopLevelDetails";
 import { VideoAndImages } from "./Video&Images";
 import { Cast } from "./Cast";
 import { Reviews } from "./Reviews";
-import { MovieList } from "../home/MovieList";
+import { MovieList } from "../../components/MovieList";
 
 export function MovieDetailsPage({ apiKey }) {
   const { id } = useParams();

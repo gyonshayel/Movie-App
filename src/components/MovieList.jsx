@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { Loading } from "../../components/Loading";
-import { Error } from "../../components/Error";
-import { MovieCard } from "../../components/MovieCard";
-import { getYear } from "../../utils/getYear";
+import { Loading } from "./Loading";
+import { Error } from "./Error";
+import { MovieCard } from "./MovieCard";
+import { getYear } from "../utils/getYear";
 
 export function MovieList({ id, url, listName }) {
   const [movieList, setMovieList] = useState([]);
