@@ -18,7 +18,6 @@ export function TopLevelDetails({ apiKey }) {
 
       const data = await response.json();
       setMovieData(data);
-      console.log(data);
     } catch (error) {
       if (error.name !== "AbortError") setError(error.message);
     }
