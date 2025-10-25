@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { WatchLater } from "./WatchLater";
 
 export function MovieCard({ id, name, year, poster }) {
   return (
@@ -26,6 +27,9 @@ export function MovieCard({ id, name, year, poster }) {
           {name}
         </CardTitle>
         <CardDescription className="text-xs sm:text-sm">{year}</CardDescription>
+        <div className="absolute bottom-2 right-2 z-10">
+          <WatchLater movieId={id} />
+        </div>
       </CardHeader>
     </Card>
   );

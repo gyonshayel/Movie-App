@@ -50,7 +50,6 @@ export function SearchBar({
   // For the search dropdown items
   const handleSelect = (movie) => {
     setShowDropdown(false);
-    console.log("handling");
     if (searchBarFor !== null) setOpen(false);
     setQuery("");
     if (onSelectMovie) onSelectMovie(movie.id);
