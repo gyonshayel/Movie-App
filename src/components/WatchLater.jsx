@@ -1,47 +1,52 @@
-import { useState, useEffect } from "react";
+import { useWatchLater } from "../context/WatchLaterContext";
 
 export function WatchLater({ movieId, name, year, poster }) {
-  const [isClicked, setIsClicked] = useState(false);
+  const { toggleWatchLater, isInWatchLater } = useWatchLater();
+  const isClicked = isInWatchLater(movieId);
+
+  const handleClick = () => {
+    toggleWatchLater({ id: movieId, name, year, poster });
+  };
 
   // Checking whether movieId is already in watch list
-  useEffect(() => {
-    const arr = localStorage.getItem("watchLaterArray");
-    const watchLaterArray = arr ? JSON.parse(arr) : [];
+  // useEffect(() => {
+  //   const arr = localStorage.getItem("watchLaterArray");
+  //   const watchLaterArray = arr ? JSON.parse(arr) : [];
 
-    if (watchLaterArray.some((object) => object.id === movieId)) {
-      setIsClicked(true);
-    }
-  }, [movieId]);
+  //   if (watchLaterArray.some((object) => object.id === movieId)) {
+  //     setIsClicked(true);
+  //   }
+  // }, [movieId]);
 
   // Update local storage when toggling watch-later-btn
-  useEffect(() => {
-    const arr = localStorage.getItem("watchLaterArray");
-    const watchLaterArray = arr ? JSON.parse(arr) : [];
+  // useEffect(() => {
+  //   const arr = localStorage.getItem("watchLaterArray");
+  //   const watchLaterArray = arr ? JSON.parse(arr) : [];
 
-    if (isClicked) {
-      if (!watchLaterArray.some((object) => object.id === movieId)) {
-        watchLaterArray.unshift({
-          id: movieId,
-          name: name,
-          year: year,
-          poster: poster,
-        });
-      }
-    } else {
-      const index = watchLaterArray.findIndex(
-        (object) => object.id === movieId
-      );
-      if (index > -1) {
-        watchLaterArray.splice(index, 1);
-      }
-    }
+  //   if (isClicked) {
+  //     if (!watchLaterArray.some((object) => object.id === movieId)) {
+  //       watchLaterArray.unshift({
+  //         id: movieId,
+  //         name: name,
+  //         year: year,
+  //         poster: poster,
+  //       });
+  //     }
+  //   } else {
+  //     const index = watchLaterArray.findIndex(
+  //       (object) => object.id === movieId
+  //     );
+  //     if (index > -1) {
+  //       watchLaterArray.splice(index, 1);
+  //     }
+  //   }
 
-    localStorage.setItem("watchLaterArray", JSON.stringify(watchLaterArray));
-  }, [isClicked, movieId, name, year, poster]);
+  //   localStorage.setItem("watchLaterArray", JSON.stringify(watchLaterArray));
+  // }, [isClicked, movieId, name, year, poster]);
 
   return (
     <button
-      onClick={() => setIsClicked(!isClicked)}
+      onClick={handleClick}
       className="watch-later-btn cursor-pointer transition-transform duration-200 hover:scale-110"
       aria-label="Add/remove from watch list"
     >

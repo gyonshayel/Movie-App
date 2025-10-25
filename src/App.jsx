@@ -10,6 +10,7 @@ import { Footer } from "./components/Footer";
 import { HomePage } from "./pages/home/HomePage";
 import { SearchResultsPage } from "./pages/search/SearchResultsPage";
 import { MovieDetailsPage } from "./pages/details/MovieDetailsPage";
+import { WatchLaterProvider } from "./context/WatchLaterContext";
 import "./App.css";
 
 const apiKey = "bc63ebee257313f7280d383f25f847ae";
@@ -18,23 +19,25 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
-        <div className="flex flex-col min-h-screen">
-          <HeaderWithNavigation apiKey={apiKey} />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<HomePage apiKey={apiKey} />} />
-              <Route
-                path="/search/:query"
-                element={<SearchResultsPage apiKey={apiKey} />}
-              />
-              <Route
-                path="/search/:id/details"
-                element={<MovieDetailsPage apiKey={apiKey} />}
-              />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <WatchLaterProvider>
+          <div className="flex flex-col min-h-screen">
+            <HeaderWithNavigation apiKey={apiKey} />
+            <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<HomePage apiKey={apiKey} />} />
+                <Route
+                  path="/search/:query"
+                  element={<SearchResultsPage apiKey={apiKey} />}
+                />
+                <Route
+                  path="/search/:id/details"
+                  element={<MovieDetailsPage apiKey={apiKey} />}
+                />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </WatchLaterProvider>
       </Router>
     </ThemeProvider>
   );
