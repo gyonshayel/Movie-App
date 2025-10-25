@@ -11,14 +11,15 @@ import { HomePage } from "./pages/home/HomePage";
 import { SearchResultsPage } from "./pages/search/SearchResultsPage";
 import { MovieDetailsPage } from "./pages/details/MovieDetailsPage";
 import { WatchLaterProvider } from "./context/WatchLaterContext";
+import { WatchList } from "./pages/watchlist/WatchList";
 import "./App.css";
 
 const apiKey = "bc63ebee257313f7280d383f25f847ae";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <WatchLaterProvider>
+    <WatchLaterProvider>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Router>
           <div className="flex flex-col min-h-screen">
             <HeaderWithNavigation apiKey={apiKey} />
@@ -33,13 +34,14 @@ function App() {
                   path="/search/:id/details"
                   element={<MovieDetailsPage apiKey={apiKey} />}
                 />
+                <Route path="/watchlist" element={<WatchList />} />
               </Routes>
             </main>
             <Footer />
           </div>
         </Router>
-      </WatchLaterProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </WatchLaterProvider>
   );
 }
 

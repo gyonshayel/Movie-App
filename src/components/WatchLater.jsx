@@ -8,43 +8,6 @@ export function WatchLater({ movieId, name, year, poster }) {
     toggleWatchLater({ id: movieId, name, year, poster });
   };
 
-  // const [isClicked, setIsClicked] = useState(false);
-  // Checking whether movieId is already in watch list
-  // useEffect(() => {
-  //   const arr = localStorage.getItem("watchLaterArray");
-  //   const watchLaterArray = arr ? JSON.parse(arr) : [];
-
-  //   if (watchLaterArray.some((object) => object.id === movieId)) {
-  //     setIsClicked(true);
-  //   }
-  // }, [movieId]);
-
-  // Update local storage when toggling watch-later-btn
-  // useEffect(() => {
-  //   const arr = localStorage.getItem("watchLaterArray");
-  //   const watchLaterArray = arr ? JSON.parse(arr) : [];
-
-  //   if (isClicked) {
-  //     if (!watchLaterArray.some((object) => object.id === movieId)) {
-  //       watchLaterArray.unshift({
-  //         id: movieId,
-  //         name: name,
-  //         year: year,
-  //         poster: poster,
-  //       });
-  //     }
-  //   } else {
-  //     const index = watchLaterArray.findIndex(
-  //       (object) => object.id === movieId
-  //     );
-  //     if (index > -1) {
-  //       watchLaterArray.splice(index, 1);
-  //     }
-  //   }
-
-  //   localStorage.setItem("watchLaterArray", JSON.stringify(watchLaterArray));
-  // }, [isClicked, movieId, name, year, poster]);
-
   return (
     <button
       onClick={handleClick}
