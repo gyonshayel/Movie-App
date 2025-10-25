@@ -8,6 +8,7 @@ export function WatchLater({ movieId, name, year, poster }) {
     toggleWatchLater({ id: movieId, name, year, poster });
   };
 
+  // const [isClicked, setIsClicked] = useState(false);
   // Checking whether movieId is already in watch list
   // useEffect(() => {
   //   const arr = localStorage.getItem("watchLaterArray");

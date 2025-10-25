@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { Genres } from "./Genres";
 import { Error } from "../../components/Error";
 import { getYear } from "../../utils/getYear";
+import { WatchLater } from "../../components/WatchLater";
+import { Favorite } from "../../components/Favorite";
 
 export function TopLevelDetails({ apiKey }) {
   const { id } = useParams();
@@ -56,6 +58,26 @@ export function TopLevelDetails({ apiKey }) {
             <Genres genres={genres} />
           </div>
           <p>Rating {vote_average?.toFixed(1)}</p>
+          <div>
+            <span>
+              <WatchLater
+                movieId={id}
+                name={title}
+                year={getYear(release_date)}
+                poster={poster}
+              />
+              Watch Later
+            </span>
+            <span>
+              <Favorite
+                movieId={id}
+                name={title}
+                year={getYear(release_date)}
+                poster={poster}
+              />
+              Favorite
+            </span>
+          </div>
         </div>
         <div className="col-span-2">
           <p className="leading-relaxed">{overview}</p>

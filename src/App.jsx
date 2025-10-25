@@ -18,8 +18,8 @@ const apiKey = "bc63ebee257313f7280d383f25f847ae";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <Router>
-        <WatchLaterProvider>
+      <WatchLaterProvider>
+        <Router>
           <div className="flex flex-col min-h-screen">
             <HeaderWithNavigation apiKey={apiKey} />
             <main className="flex-1">
@@ -37,8 +37,8 @@ function App() {
             </main>
             <Footer />
           </div>
-        </WatchLaterProvider>
-      </Router>
+        </Router>
+      </WatchLaterProvider>
     </ThemeProvider>
   );
 }
