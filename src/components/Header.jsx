@@ -70,7 +70,9 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
         <a href="/watchlist" className="hidden lg:block">
           Watch List
         </a>
-        <a className="hidden lg:block">Favorites</a>
+        <a href="/favorites" className="hidden lg:block">
+          Favorites
+        </a>
       </div>
 
       {/* Mobile navigation */}

@@ -12,6 +12,7 @@ import { SearchResultsPage } from "./pages/search/SearchResultsPage";
 import { MovieDetailsPage } from "./pages/details/MovieDetailsPage";
 import { WatchLaterProvider } from "./context/WatchLaterContext";
 import { WatchList } from "./pages/watchlist/WatchList";
+import { Favorites } from "./pages/favorites/Favorites";
 import "./App.css";
 
 const apiKey = "bc63ebee257313f7280d383f25f847ae";
@@ -35,6 +36,7 @@ function App() {
                   element={<MovieDetailsPage apiKey={apiKey} />}
                 />
                 <Route path="/watchlist" element={<WatchList />} />
+                <Route path="/favorites" element={<Favorites />} />
               </Routes>
             </main>
             <Footer />

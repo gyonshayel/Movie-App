@@ -55,7 +55,7 @@ export function MobileNav({
         </div>
 
         <SheetFooter>
-          <a>
+          <a href="/watchlist">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -70,7 +70,7 @@ export function MobileNav({
             </svg>
             Watch List
           </a>
-          <a>
+          <a href="/favorites">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
