@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 
-export function WatchLater({ movieId }) {
+export function WatchLater({ movieId, name, year, poster }) {
   const [isClicked, setIsClicked] = useState(false);
 
   // Checking whether movieId is already in watch list
   useEffect(() => {
     const arr = localStorage.getItem("watchLaterArray");
     const watchLaterArray = arr ? JSON.parse(arr) : [];
-    if (watchLaterArray.includes(movieId)) {
+
+    if (watchLaterArray.some((object) => object.id === movieId)) {
       setIsClicked(true);
     }
   }, [movieId]);
@@ -18,18 +19,25 @@ export function WatchLater({ movieId }) {
     const watchLaterArray = arr ? JSON.parse(arr) : [];
 
     if (isClicked) {
-      if (!watchLaterArray.includes(movieId)) {
-        watchLaterArray.unshift(movieId);
+      if (!watchLaterArray.some((object) => object.id === movieId)) {
+        watchLaterArray.unshift({
+          id: movieId,
+          name: name,
+          year: year,
+          poster: poster,
+        });
       }
     } else {
-      const index = watchLaterArray.indexOf(movieId);
+      const index = watchLaterArray.findIndex(
+        (object) => object.id === movieId
+      );
       if (index > -1) {
         watchLaterArray.splice(index, 1);
       }
     }
 
     localStorage.setItem("watchLaterArray", JSON.stringify(watchLaterArray));
-  }, [isClicked, movieId]);
+  }, [isClicked, movieId, name, year, poster]);
 
   return (
     <button
