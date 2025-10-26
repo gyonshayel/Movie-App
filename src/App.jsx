@@ -15,7 +15,7 @@ import { WatchList } from "./pages/watchlist/WatchList";
 import { Favorites } from "./pages/favorites/Favorites";
 import "./App.css";
 
-const apiKey = "bc63ebee257313f7280d383f25f847ae";
+const apiKey = import.meta.env.VITE_MOVIE_API_KEY;
 
 function App() {
   return (

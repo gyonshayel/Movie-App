@@ -19,7 +19,7 @@ export function MovieList({ id, url, listName }) {
       setError(null);
 
       // Wait before calling the API (simulate delay)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
       // Record current scroll position
       const scrollLeftBefore = containerRef.current?.scrollLeft || 0;
@@ -51,7 +51,7 @@ export function MovieList({ id, url, listName }) {
 
   useEffect(() => {
     fetchMovieListData(page);
-  }, [page, url]);
+  }, [page]);
 
   // Infinite scroll observer
   useEffect(() => {

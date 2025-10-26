@@ -14,16 +14,17 @@ export function WatchLaterProvider({ children }) {
     localStorage.setItem("watchLaterArray", JSON.stringify(watchLaterList));
   }, [watchLaterList]);
 
-  const toggleWatchLater = (movie) => {
+  const toggleWatchLater = (movieObj) => {
     setWatchLaterList((prev) => {
-      const exists = prev.some((item) => item.id === movie.id);
+      const exists = prev.some((object) => object.id === movieObj.id);
       return exists
-        ? prev.filter((item) => item.id !== movie.id)
-        : [movie, ...prev];
+        ? prev.filter((object) => object.id !== movieObj.id)
+        : [movieObj, ...prev];
     });
   };
 
-  const isInWatchLater = (id) => watchLaterList.some((item) => item.id === id);
+  const isInWatchLater = (movieId) =>
+    watchLaterList.some((object) => object.id === movieId);
 
   return (
     <WatchLaterContext.Provider

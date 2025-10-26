@@ -28,15 +28,15 @@ export function MovieCard({ movieId, name, year, poster }) {
         </CardTitle>
         <CardDescription className="text-xs sm:text-sm">
           <p>{year}</p>
-          <div className="">
-            <WatchLater
-              movieId={movieId}
-              name={name}
-              year={year}
-              poster={poster}
-            />
-          </div>
         </CardDescription>
+        <CardAction>
+          <WatchLater
+            movieId={movieId}
+            name={name}
+            year={year}
+            poster={poster}
+          />
+        </CardAction>
       </CardHeader>
     </Card>
   );

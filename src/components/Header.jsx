@@ -67,12 +67,12 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
       </div>
 
       <div className="flex gap-4">
-        <a href="/watchlist" className="hidden lg:block">
-          Watch List
-        </a>
-        <a href="/favorites" className="hidden lg:block">
-          Favorites
-        </a>
+        <Link to={"/watchlist"}>
+          <button className="hidden lg:block">Watch List</button>
+        </Link>
+        <Link to={"/favorites"}>
+          <button className="hidden lg:block">Favorites</button>
+        </Link>
       </div>
 
       {/* Mobile navigation */}

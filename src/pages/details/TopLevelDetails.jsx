@@ -30,6 +30,7 @@ export function TopLevelDetails({ apiKey }) {
   }, [id, apiKey]);
 
   const {
+    id: movieId,
     poster_path,
     title,
     release_date,
@@ -59,24 +60,24 @@ export function TopLevelDetails({ apiKey }) {
           </div>
           <p>Rating {vote_average?.toFixed(1)}</p>
           <div>
-            <span>
+            <div>
               <WatchLater
-                movieId={id}
+                movieId={movieId}
                 name={title}
                 year={getYear(release_date)}
                 poster={poster}
               />
               Watch Later
-            </span>
-            <span>
+            </div>
+            <div>
               <Favorite
-                movieId={id}
+                movieId={movieId}
                 name={title}
                 year={getYear(release_date)}
                 poster={poster}
               />
               Favorite
-            </span>
+            </div>
           </div>
         </div>
         <div className="col-span-2">
