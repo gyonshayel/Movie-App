@@ -1,7 +1,7 @@
 import { MovieCard } from "../../components/MovieCard";
 import { useWatchLater } from "../../context/WatchLaterContext";
 
-export function WatchList() {
+export function WatchListPage() {
   const { watchLaterList } = useWatchLater();
 
   if (watchLaterList.length === 0) {

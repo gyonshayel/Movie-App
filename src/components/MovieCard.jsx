@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { WatchLater } from "./WatchLater";
+import { AddToWatchList } from "./AddToWatchList";
 
 export function MovieCard({ movieId, name, year, poster }) {
   return (
@@ -30,7 +30,7 @@ export function MovieCard({ movieId, name, year, poster }) {
           <p>{year}</p>
         </CardDescription>
         <CardAction>
-          <WatchLater
+          <AddToWatchList
             movieId={movieId}
             name={name}
             year={year}

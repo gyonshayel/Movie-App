@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function Favorite({ movieId, name, year, poster }) {
+export function AddToFavorites({ movieId, name, year, poster }) {
   const [isClicked, setIsClicked] = useState(false);
 
   // Checking whether movieId is already in favorites list

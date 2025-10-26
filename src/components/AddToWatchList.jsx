@@ -1,6 +1,6 @@
 import { useWatchLater } from "../context/WatchLaterContext";
 
-export function WatchLater({ movieId, name, year, poster }) {
+export function AddToWatchList({ movieId, name, year, poster }) {
   const { toggleWatchLater, isInWatchLater } = useWatchLater();
   const isClicked = isInWatchLater(movieId);
 
@@ -8,7 +8,7 @@ export function WatchLater({ movieId, name, year, poster }) {
     toggleWatchLater({ id: movieId, name, year, poster });
   };
 
-  // Replace watch later icon to a bin inside /watchlist page
+  // To replace watch later icon to a bin inside /watchlist page
   const pathname = window.location.pathname;
 
   return (

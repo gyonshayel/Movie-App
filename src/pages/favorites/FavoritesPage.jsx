@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FavoriteMovieCard } from "./FavoriteMovieCard";
 
-export function Favorites() {
+export function FavoritesPage() {
   const [favoritesArray, setFavoritesArray] = useState([]);
 
   useEffect(() => {

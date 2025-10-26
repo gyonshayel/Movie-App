@@ -3,8 +3,8 @@ import { useParams } from "react-router";
 import { Genres } from "./Genres";
 import { Error } from "../../components/Error";
 import { getYear } from "../../utils/getYear";
-import { WatchLater } from "../../components/WatchLater";
-import { Favorite } from "../../components/Favorite";
+import { AddToWatchList } from "../../components/AddToWatchList";
+import { AddToFavorites } from "../../components/AddToFavorites";
 
 export function TopLevelDetails({ apiKey }) {
   const { id } = useParams();
@@ -61,7 +61,7 @@ export function TopLevelDetails({ apiKey }) {
           <p>Rating {vote_average?.toFixed(1)}</p>
           <div>
             <div>
-              <WatchLater
+              <AddToWatchList
                 movieId={movieId}
                 name={title}
                 year={getYear(release_date)}
@@ -70,7 +70,7 @@ export function TopLevelDetails({ apiKey }) {
               Watch Later
             </div>
             <div>
-              <Favorite
+              <AddToFavorites
                 movieId={movieId}
                 name={title}
                 year={getYear(release_date)}

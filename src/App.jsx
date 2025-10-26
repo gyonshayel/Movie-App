@@ -11,8 +11,8 @@ import { HomePage } from "./pages/home/HomePage";
 import { SearchResultsPage } from "./pages/search/SearchResultsPage";
 import { MovieDetailsPage } from "./pages/details/MovieDetailsPage";
 import { WatchLaterProvider } from "./context/WatchLaterContext";
-import { WatchList } from "./pages/watchlist/WatchList";
-import { Favorites } from "./pages/favorites/Favorites";
+import { WatchListPage } from "./pages/watchlist/WatchListPage";
+import { FavoritesPage } from "./pages/favorites/FavoritesPage";
 import "./App.css";
 
 const apiKey = import.meta.env.VITE_MOVIE_API_KEY;
@@ -35,8 +35,8 @@ function App() {
                   path="/search/:id/details"
                   element={<MovieDetailsPage apiKey={apiKey} />}
                 />
-                <Route path="/watchlist" element={<WatchList />} />
-                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/watchlist" element={<WatchListPage />} />
+                <Route path="/favorites" element={<FavoritesPage />} />
               </Routes>
             </main>
             <Footer />
