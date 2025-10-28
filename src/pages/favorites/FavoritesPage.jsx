@@ -1,5 +1,16 @@
+import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import { FavoriteMovieCard } from "./FavoriteMovieCard";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "../../components/ui/empty";
+import { HeartIcon } from "lucide-react";
+import { Button } from "../../components/ui/button";
 
 export function FavoritesPage() {
   const [favoritesArray, setFavoritesArray] = useState([]);
@@ -21,7 +32,24 @@ export function FavoritesPage() {
   };
 
   if (favoritesArray.length === 0) {
-    return <p className="text-center mt-6">No movies in your Favorites</p>;
+    return (
+      <Empty className="border border-dashed">
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <HeartIcon className="[svg]:fill-red-500 [svg]:stroke-red-500" />
+          </EmptyMedia>
+          <EmptyTitle>Favorites Empty</EmptyTitle>
+          <EmptyDescription>Start adding movies you love!</EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Link to={"/"}>
+            <Button variant="outline" size="sm">
+              Browse
+            </Button>
+          </Link>
+        </EmptyContent>
+      </Empty>
+    );
   }
 
   return (

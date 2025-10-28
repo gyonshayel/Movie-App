@@ -1,11 +1,41 @@
+import { Link } from "react-router";
 import { MovieCard } from "../../components/MovieCard";
 import { useWatchLater } from "../../context/WatchLaterContext";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "../../components/ui/empty";
+import { BookmarkIcon } from "lucide-react";
+import { Button } from "../../components/ui/button";
 
 export function WatchListPage() {
   const { watchLaterList } = useWatchLater();
 
   if (watchLaterList.length === 0) {
-    return <p className="text-center mt-6">No movies in your Watch List</p>;
+    return (
+      <Empty className="border border-dashed">
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <BookmarkIcon className="[svg]:fill-blue-500 [svg]:stroke-blue-500" />
+          </EmptyMedia>
+          <EmptyTitle>Watch List Empty</EmptyTitle>
+          <EmptyDescription>
+            Browse movies and save them for later!
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Link to={"/"}>
+            <Button variant="outline" size="sm">
+              Browse
+            </Button>
+          </Link>
+        </EmptyContent>
+      </Empty>
+    );
   }
 
   return (
