@@ -3,12 +3,10 @@ import { createContext, useContext, useState, useEffect } from "react";
 const WatchLaterContext = createContext();
 
 export function WatchLaterProvider({ children }) {
-  const [watchLaterList, setWatchLaterList] = useState([]);
-
-  useEffect(() => {
-    const arr = JSON.parse(localStorage.getItem("watchLaterArray")) || [];
-    setWatchLaterList(arr);
-  }, []);
+  const [watchLaterList, setWatchLaterList] = useState(() => {
+    const arr = localStorage.getItem("watchLaterArray");
+    return arr ? JSON.parse(arr) : [];
+  });
 
   useEffect(() => {
     localStorage.setItem("watchLaterArray", JSON.stringify(watchLaterList));
