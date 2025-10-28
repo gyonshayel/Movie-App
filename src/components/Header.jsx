@@ -1,8 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
-import { SearchBar } from "./SearchBar";
 import { MobileNav } from "./MobileNav";
+import { SearchBar } from "./SearchBar";
 import { Error } from "./Error";
+import { Button } from "./ui/button";
 
 export function Header({ apiKey, onSearch, onSelectMovie }) {
   const [query, setQuery] = useState("");
@@ -45,15 +46,24 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
   }, [query, apiKey]);
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between px-4 py-3 mb-8 bg-background border-b border-border shadow-sm">
+    <header
+      className="flex justify-between items-center sticky top-0 z-50 
+      px-2 sm:px-3 md:px-4 xl:px-5
+      py-3 md:py-4 xl:py-5 
+      mb-2 sm:mb-3 md:mb-4 xl:mb-5
+      bg-background/50 backdrop-blur-3xl border-b border-accent"
+    >
       {/* Logo */}
-      <div className="">
-        <Link to="/">
-          <h1 className="text-3xl font-semibold tracking-tight">Movie DB</h1>
-        </Link>
-      </div>
+      <Link to={"/"}>
+        <div className="text-3xl leading-[1.875rem] lg:text-4xl font-semibold tracking-tight">
+          Movie{" "}
+          <span className="inline-block text-background font-bold bg-accent-foreground rounded-sm pt-0.5 pb-1 px-1">
+            DB
+          </span>
+        </div>
+      </Link>
 
-      <div className="hidden lg:block grow lg:mx-16">
+      <div className="hidden grow lg:block lg:mx-16">
         <SearchBar
           query={query}
           setQuery={setQuery}
@@ -66,12 +76,12 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
         />
       </div>
 
-      <div className="flex gap-4">
+      <div className="hidden lg:flex lg:gap-1 xl:gap-2 2xl:gap-3">
         <Link to={"/watchlist"}>
-          <button className="hidden lg:block">Watch List</button>
+          <Button variant="link">Watch List</Button>
         </Link>
         <Link to={"/favorites"}>
-          <button className="hidden lg:block">Favorites</button>
+          <Button variant="link">Favorites</Button>
         </Link>
       </div>
 

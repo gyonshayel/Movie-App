@@ -24,7 +24,7 @@ function App() {
         <Router>
           <div className="flex flex-col min-h-screen">
             <HeaderWithNavigation apiKey={apiKey} />
-            <main className="flex-1">
+            <main className="flex-1 px-2 sm:px-3 md:px-4">
               <Routes>
                 <Route path="/" element={<HomePage apiKey={apiKey} />} />
                 <Route

@@ -56,10 +56,10 @@ export function SearchBar({
   };
 
   return (
-    <form className="flex gap-4 p-4 pt-0 lg:gap-2 lg:p-0 lg:m-auto lg:max-w-3xl">
-      <div ref={dropdownRef} className="w-[100%] relative">
+    <form className="flex gap-2 md:gap-4 px-2 lg:p-0 m-auto max-w-3xl">
+      <div ref={dropdownRef} className="w-full relative">
         <Input
-          className="rounded-2xl"
+          className="text-sm lg:text-base px-2 lg:px-4 rounded-2xl"
           autoFocus={autoFocus}
           id="search"
           type="text"
@@ -70,16 +70,16 @@ export function SearchBar({
         />
         {/* Suggestion Dropdown */}
         {showDropdown && suggestions.length > 0 && (
-          <ul className="absolute left-0 top-full bg-background border border-border rounded-md  overflow-y-auto w-[100%]">
+          <ul className="absolute left-0 top-full z-40 text-sm lg:text-base bg-background/90 backdrop-blur-2xl border border-border rounded-md overflow-y-auto w-full">
             {suggestions.map((movie) => (
               <li
                 key={movie.id}
                 onMouseDown={() => handleSelect(movie)}
-                className="px-3 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors"
+                className="px-2 lg:px-4 py-2 lg:py-4 cursor-pointer"
               >
                 {movie.title}{" "}
                 {movie.release_date && (
-                  <span className="text-muted-foreground text-sm">
+                  <span className="text-muted-foreground text-xs lg:text-sm">
                     ({getYear(movie.release_date)})
                   </span>
                 )}
@@ -89,7 +89,7 @@ export function SearchBar({
         )}
       </div>
       <Button
-        className="rounded-[50%]"
+        className="rounded-full"
         variant="outline"
         size="icon"
         aria-label="Submit"

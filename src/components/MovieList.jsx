@@ -3,6 +3,7 @@ import { Loading } from "./Loading";
 import { Error } from "./Error";
 import { MovieCard } from "./MovieCard";
 import { getYear } from "../utils/getYear";
+import { HorizontalScroll } from "./HorizontalScroll";
 
 export function MovieList({ id, url, listName }) {
   const [movieList, setMovieList] = useState([]);
@@ -72,39 +73,38 @@ export function MovieList({ id, url, listName }) {
   }, [hasMore, loading, id]);
 
   return (
-    <>
-      <h2 className="text-2xl font-bold">{listName}</h2>
-      <div
-        ref={containerRef}
-        id={id}
-        className="flex overflow-x-scroll gap-1.5 mt-2 mb-4 py-4"
-      >
-        {movieList.map((item, index) => {
-          return (
-            <MovieCard
-              key={index}
-              movieId={item.id}
-              name={item.title}
-              year={getYear(item.release_date)}
-              poster={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-            />
-          );
-        })}
+    <div className="relative pb-8">
+      <h2 className="text-2xl lg:text-3xl font-medium">{listName}</h2>
 
+      <HorizontalScroll scrollRef={containerRef}>
         <div
-          className={
-            loading === false ? "hidden" : "self-center min-w-14 min-h-14 p-2"
-          }
+          ref={containerRef}
+          id={id}
+          className="flex overflow-x-scroll gap-2 lg:gap-3 lg:mx-2.5 py-2 lg:py-4 scrollbar-hide scroll-smooth"
         >
-          <Loading />
+          {movieList.map((item, index) => {
+            return (
+              <MovieCard
+                key={index}
+                movieId={item.id}
+                name={item.title}
+                year={getYear(item.release_date)}
+                poster={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+              />
+            );
+          })}
+
+          <div className={"self-center min-w-14 min-h-14 p-2"}>
+            <Loading />
+          </div>
+
+          {hasMore && !loading && (
+            <div ref={observerRef} className="w-1 h-1"></div>
+          )}
         </div>
+      </HorizontalScroll>
 
-        {error && <Error />}
-
-        {hasMore && !loading && (
-          <div ref={observerRef} className="w-1 h-1"></div>
-        )}
-      </div>
-    </>
+      {error && <Error />}
+    </div>
   );
 }

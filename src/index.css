@@ -118,3 +118,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 1024px) {
+      max-width: 1024px;
+    }
+
+    @media (min-width: 1280px) {
+      max-width: 1280px;
+    }
+
+    @media (min-width: 1536px) {
+      max-width: 1536px;
+    }
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

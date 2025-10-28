@@ -2,7 +2,7 @@ import { MovieList } from "../../components/MovieList";
 
 export function HomePage({ apiKey }) {
   return (
-    <>
+    <section className="container">
       <MovieList
         id={"top-picks"}
         url={`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`}
@@ -26,6 +26,6 @@ export function HomePage({ apiKey }) {
         url={`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`}
         listName={"Upcoming"}
       />
-    </>
+    </section>
   );
 }
