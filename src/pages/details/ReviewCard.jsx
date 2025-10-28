@@ -6,26 +6,33 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
+import { Avatar, AvatarImage } from "../../components/ui/avatar";
+import { StarIcon } from "lucide-react";
+import { Badge } from "../../components/ui/badge";
+import { ScrollArea } from "../../components/ui/scroll-area";
 
 export function ReviewCard({ avatar, username, rating, review }) {
   return (
-    <Card className="min-w-[250px] max-w-[300px] lg:min-w-[300px] p-1">
-      <CardHeader className="p-1 pt-0">
-        <CardTitle className="text-sm sm:text-base line-clamp-2">
-          <div className="flex content-baseline gap-4">
-            <img
-              src={avatar || "https://placehold.co/200x300"}
-              alt={`Image of ${username}`}
-              loading="lazy"
-              className="w-8 h-auto rounded-[50%] object-cover inline-block"
-            />
-            <div className="inline-block">{username}</div>
-          </div>
-        </CardTitle>
-        <CardDescription className="text-xs sm:text-sm">{`Rating: ${rating}`}</CardDescription>
+    <Card className="gap-0.5 p-1 lg:p-2 min-w-[250px] lg:min-w-[300px] max-w-[300px]">
+      <CardHeader className="grid-cols-[auto_1fr] gap-0 lg:gap-1 p-1">
+        <Avatar className="row-span-2 my-auto mr-2">
+          <AvatarImage
+            src={avatar || "https://placehold.co/200x300"}
+            alt={`@${username}`}
+          />
+        </Avatar>
+        <CardTitle className="text-base line-clamp-2">{username}</CardTitle>
+        <CardDescription className="text-sm lg:text-base">
+          <Badge variant="outline" className="text-base ">
+            <StarIcon className="[svg]:fill-yellow-500 [svg]:stroke-yellow-500" />{" "}
+            {rating || "-"}/10
+          </Badge>
+        </CardDescription>
       </CardHeader>
-      <CardContent className="p-1 h-24 overflow-auto">
-        <p>{review}</p>
+      <CardContent className="p-0">
+        <ScrollArea className="text-sm h-36 p-2 rounded-md border">
+          {review}
+        </ScrollArea>
       </CardContent>
     </Card>
   );
