@@ -14,7 +14,7 @@ export function MovieDetailsPage({ apiKey }) {
   }, [id]);
 
   return (
-    <>
+    <section className="container">
       <TopLevelDetails apiKey={apiKey} />
       <VideoAndImages apiKey={apiKey} />
       <Cast apiKey={apiKey} />
@@ -25,6 +25,6 @@ export function MovieDetailsPage({ apiKey }) {
         url={`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}`}
         listName={"Similar Movies"}
       />
-    </>
+    </section>
   );
 }

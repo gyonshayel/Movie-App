@@ -1,4 +1,5 @@
 import { useWatchLater } from "../context/WatchLaterContext";
+import { Button } from "./ui/button";
 
 export function AddToWatchList({ movieId, name, year, poster }) {
   const { toggleWatchLater, isInWatchLater } = useWatchLater();
@@ -12,10 +13,12 @@ export function AddToWatchList({ movieId, name, year, poster }) {
   const pathname = window.location.pathname;
 
   return (
-    <button
+    <Button
       onClick={handleClick}
       disabled={!movieId || !name || !year || !poster}
-      className="watch-later-btn cursor-pointer transition-transform duration-200 hover:scale-110"
+      variant="outline"
+      size="icon"
+      className="rounded-full transition-transform duration-200"
       aria-label="Add/remove from watch list"
     >
       {isClicked === true ? (
@@ -36,7 +39,7 @@ export function AddToWatchList({ movieId, name, year, poster }) {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="currentColor"
+            fill="blue"
             className="size-5"
           >
             <path
@@ -62,6 +65,6 @@ export function AddToWatchList({ movieId, name, year, poster }) {
           />
         </svg>
       )}
-    </button>
+    </Button>
   );
 }

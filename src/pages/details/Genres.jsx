@@ -1,14 +1,13 @@
+import { Badge } from "../../components/ui/badge";
+
 export function Genres({ genres }) {
   return (
-    <>
+    <div className="flex w-full flex-wrap gap-1">
       {genres.map((genre) => (
-        <div
-          key={genre.id}
-          className="text-center border border-border rounded-2xl px-3 py-1"
-        >
+        <Badge key={genre.id} variant="secondary" className="text-base">
           {genre.name}
-        </div>
+        </Badge>
       ))}
-    </>
+    </div>
   );
 }
