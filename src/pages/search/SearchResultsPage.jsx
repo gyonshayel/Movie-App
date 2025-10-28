@@ -8,7 +8,7 @@ export function SearchResultsPage({ apiKey }) {
       key={query}
       id={"search-results"}
       url={`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`}
-      listName={"Search Results"}
+      listName={`Results for "${query}"`}
     />
   );
 }

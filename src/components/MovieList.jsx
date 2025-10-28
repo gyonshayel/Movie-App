@@ -4,11 +4,21 @@ import { Error } from "./Error";
 import { MovieCard } from "./MovieCard";
 import { getYear } from "../utils/getYear";
 import { HorizontalScroll } from "./HorizontalScroll";
+import { Button } from "../components/ui/button";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "../components/ui/empty";
 
 export function MovieList({ id, url, listName }) {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [hasResults, setHasResults] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const observerRef = useRef(null);
@@ -43,6 +53,10 @@ export function MovieList({ id, url, listName }) {
       if (pageNumber >= data.total_pages) {
         setHasMore(false);
       }
+
+      if (data.total_results === 0) {
+        setHasResults(false);
+      }
     } catch (error) {
       if (error.name !== "AbortError") setError(error.message);
     } finally {
@@ -72,7 +86,32 @@ export function MovieList({ id, url, listName }) {
     return () => observer.disconnect();
   }, [hasMore, loading, id]);
 
-  return (
+  return !hasResults ? (
+    <Empty className="border border-dashed">
+      <EmptyHeader>
+        <EmptyMedia variant="icon">
+          <svg
+            id="search-btn__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="size-5"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </EmptyMedia>
+        <EmptyTitle>No Search Results</EmptyTitle>
+        <EmptyDescription>
+          No results for your search query. Try checking your spelling or a
+          different key word.
+        </EmptyDescription>
+      </EmptyHeader>
+    </Empty>
+  ) : (
     <div className="pb-8">
       <h2 className="text-2xl lg:text-3xl font-medium">{listName}</h2>
 
