@@ -19,8 +19,6 @@ export function MobileNav({
   suggestions,
   showDropdown,
   setShowDropdown,
-  onSearch,
-  onSelectMovie,
 }) {
   const [open, setOpen] = useState(false);
 
@@ -40,7 +38,7 @@ export function MobileNav({
           </SheetDescription>
         </SheetHeader>
 
-        <div className="">
+        <div>
           <SearchBar
             searchBarFor={"mobile"}
             autoFocus={true}
@@ -49,8 +47,6 @@ export function MobileNav({
             suggestions={suggestions}
             showDropdown={showDropdown}
             setShowDropdown={setShowDropdown}
-            onSearch={onSearch}
-            onSelectMovie={onSelectMovie}
             setOpen={setOpen}
           />
         </div>

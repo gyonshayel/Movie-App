@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/theme-provider";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -23,7 +18,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Router>
           <div className="flex flex-col min-h-screen">
-            <HeaderWithNavigation apiKey={apiKey} />
+            <Header apiKey={apiKey} />
             <main className="flex-1 px-2 sm:px-3 md:px-4">
               <Routes>
                 <Route path="/" element={<HomePage apiKey={apiKey} />} />
@@ -44,28 +39,6 @@ function App() {
         </Router>
       </ThemeProvider>
     </WatchLaterProvider>
-  );
-}
-
-function HeaderWithNavigation({ apiKey }) {
-  const navigate = useNavigate();
-
-  const handleSearchResults = (query) => {
-    if (query.trim()) {
-      navigate(`/search/${encodeURIComponent(query)}`);
-    }
-  };
-
-  const handleSelectMovie = (id) => {
-    navigate(`/search/${encodeURIComponent(id)}/details`);
-  };
-
-  return (
-    <Header
-      apiKey={apiKey}
-      onSearch={handleSearchResults}
-      onSelectMovie={handleSelectMovie}
-    />
   );
 }
 

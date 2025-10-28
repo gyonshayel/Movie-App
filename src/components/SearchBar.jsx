@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { getYear } from "../utils/getYear";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -11,13 +12,10 @@ export function SearchBar({
   suggestions,
   showDropdown,
   setShowDropdown,
-  onSearch,
-  onSelectMovie,
   setOpen,
 }) {
-  const btnOnClick = (event) =>
-    searchBarFor === null ? handleSearch(event) : handleSearchClick(event);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   // Closing suggestion when clicked outside
   useEffect(() => {
@@ -33,26 +31,19 @@ export function SearchBar({
     };
   });
 
-  // For the search button
-  const handleSearchClick = (event) => {
-    event.preventDefault();
-    if (!query.trim()) return;
-    if (setOpen) setOpen(false);
-    handleSearch(event);
-  };
-
   const handleSearch = (event) => {
     event.preventDefault();
-    setShowDropdown(false);
-    if (onSearch) onSearch(query);
+    if (query.trim()) {
+      setShowDropdown(false);
+      if (searchBarFor !== null) setOpen(false);
+      navigate(`/search/${encodeURIComponent(query)}`);
+    }
   };
 
-  // For the search dropdown items
   const handleSelect = (movie) => {
-    setShowDropdown(false);
-    if (searchBarFor !== null) setOpen(false);
     setQuery("");
-    if (onSelectMovie) onSelectMovie(movie.id);
+    if (searchBarFor !== null) setOpen(false);
+    navigate(`/search/${encodeURIComponent(movie.id)}/details`);
   };
 
   return (
@@ -93,7 +84,7 @@ export function SearchBar({
         variant="outline"
         size="icon"
         aria-label="Submit"
-        onClick={btnOnClick}
+        onClick={handleSearch}
       >
         <svg
           id="search-btn__icon"

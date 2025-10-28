@@ -5,7 +5,7 @@ import { SearchBar } from "./SearchBar";
 import { Error } from "./Error";
 import { Button } from "./ui/button";
 
-export function Header({ apiKey, onSearch, onSelectMovie }) {
+export function Header({ apiKey }) {
   const [query, setQuery] = useState("");
   const [error, setError] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
@@ -71,8 +71,6 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
           suggestions={suggestions}
           showDropdown={showDropdown}
           setShowDropdown={setShowDropdown}
-          onSearch={onSearch}
-          onSelectMovie={onSelectMovie}
           setOpen={null}
         />
       </div>
@@ -93,8 +91,6 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
         suggestions={suggestions}
         showDropdown={showDropdown}
         setShowDropdown={setShowDropdown}
-        onSearch={onSearch}
-        onSelectMovie={onSelectMovie}
       />
       {error && <Error />}
     </header>
