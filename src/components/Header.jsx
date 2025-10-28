@@ -54,14 +54,15 @@ export function Header({ apiKey, onSearch, onSelectMovie }) {
       bg-background/50 backdrop-blur-3xl border-b border-accent"
     >
       {/* Logo */}
-      <Link to={"/"}>
-        <div className="text-3xl leading-[1.875rem] lg:text-4xl font-semibold tracking-tight">
-          Movie{" "}
-          <span className="inline-block text-background font-bold bg-accent-foreground rounded-sm pt-0.5 pb-1 px-1">
-            DB
-          </span>
+      <a
+        className="text-3xl leading-[1.875rem] lg:text-4xl font-semibold tracking-tight"
+        href="/"
+      >
+        Movie{" "}
+        <div className="inline-block text-background font-bold bg-accent-foreground rounded-sm pt-0.5 pb-1 px-1">
+          DB
         </div>
-      </Link>
+      </a>
 
       <div className="hidden grow lg:block lg:mx-16">
         <SearchBar

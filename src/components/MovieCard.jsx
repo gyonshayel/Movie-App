@@ -10,6 +10,8 @@ import {
 import { AddToWatchList } from "./AddToWatchList";
 
 export function MovieCard({ movieId, name, year, poster }) {
+  const pathname = window.location.pathname;
+
   return (
     <Card className="group relative gap-0.5 p-1 lg:p-2 min-w-[125px] lg:min-w-[150px] max-w-[150px]">
       <CardContent className="p-0.5">
@@ -30,7 +32,15 @@ export function MovieCard({ movieId, name, year, poster }) {
           <p>{year}</p>
         </CardDescription>
       </CardHeader>
-      <div className="hidden lg:block absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+
+      {/* Making bin icon visible at all times */}
+      <div
+        className={
+          pathname === "/watchlist"
+            ? "absolute bottom-1 right-1 opacity-100"
+            : "hidden lg:block absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        }
+      >
         <AddToWatchList
           movieId={movieId}
           name={name}

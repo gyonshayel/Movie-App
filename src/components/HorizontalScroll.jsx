@@ -13,13 +13,13 @@ export function HorizontalScroll({ children, scrollRef }) {
   };
 
   return (
-    <>
+    <div className="relative">
       {/* Left scroll button */}
       <Button
         onClick={() => scroll("left")}
         variant="ghost"
         size="icon"
-        className="hidden lg:block absolute -left-2 top-[50%] z-10 cursor-pointer rounded-full bg-background/90 opacity-20 hover:opacity-90 transition-opacity duration-300"
+        className="hidden lg:block absolute -left-2 top-1/2 -translate-y-1/2 z-10 cursor-pointer rounded-full bg-background/90 opacity-20 hover:opacity-90 transition-opacity duration-300"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ export function HorizontalScroll({ children, scrollRef }) {
         onClick={() => scroll("right")}
         variant="ghost"
         size="icon"
-        className="hidden lg:block absolute -right-2 top-[50%] z-10 cursor-pointer rounded-full bg-background/90 opacity-20 hover:opacity-90 transition-opacity duration-300"
+        className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-10 cursor-pointer rounded-full bg-background/90 opacity-20 hover:opacity-90 transition-opacity duration-300"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -62,6 +62,6 @@ export function HorizontalScroll({ children, scrollRef }) {
           />
         </svg>
       </Button>
-    </>
+    </div>
   );
 }

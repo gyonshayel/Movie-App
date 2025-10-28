@@ -73,7 +73,7 @@ export function MovieList({ id, url, listName }) {
   }, [hasMore, loading, id]);
 
   return (
-    <div className="relative pb-8">
+    <div className="pb-8">
       <h2 className="text-2xl lg:text-3xl font-medium">{listName}</h2>
 
       <HorizontalScroll scrollRef={containerRef}>
@@ -94,12 +94,13 @@ export function MovieList({ id, url, listName }) {
             );
           })}
 
-          <div className={"self-center min-w-14 min-h-14 p-2"}>
-            <Loading />
-          </div>
-
-          {hasMore && !loading && (
-            <div ref={observerRef} className="w-1 h-1"></div>
+          {/* When using loading state, in order to see the spinner user need to
+          scroll again to the end */}
+          {hasMore && (
+            <div className="self-center min-w-20 min-h-14 p-2">
+              <Loading />
+              {!loading && <div ref={observerRef} className="w-1 h-1"></div>}
+            </div>
           )}
         </div>
       </HorizontalScroll>
