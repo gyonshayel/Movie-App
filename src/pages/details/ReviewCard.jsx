@@ -13,7 +13,7 @@ import { ScrollArea } from "../../components/ui/scroll-area";
 
 export function ReviewCard({ avatar, username, rating, review }) {
   return (
-    <Card className="gap-0.5 p-1 lg:p-2 min-w-[250px] lg:min-w-[300px] max-w-[300px]">
+    <Card className="group relative gap-0.5 p-1 lg:p-2 min-w-[250px] lg:min-w-[300px] max-w-[300px]">
       <CardHeader className="grid-cols-[auto_1fr] gap-0 lg:gap-1 p-1">
         <Avatar className="row-span-2 my-auto mr-2">
           <AvatarImage
