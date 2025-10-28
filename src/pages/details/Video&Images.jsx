@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router";
 import { Error } from "../../components/Error";
+import { HorizontalScroll } from "../../components/HorizontalScroll";
 
 export function VideoAndImages({ apiKey }) {
   const { id } = useParams();
   const [video, setVideo] = useState(null);
   const [images, setImages] = useState([]);
   const [error, setError] = useState(null);
+  const containerRef = useRef(null);
 
   const fetchVideo = async () => {
     try {
@@ -62,33 +64,38 @@ export function VideoAndImages({ apiKey }) {
 
   return (
     <>
-      <div className="flex overflow-x-auto gap-3 p-2 space-y-6">
-        {/* Trailer */}
-        {video && (
-          <div className="w-full max-w-4xl mx-auto">
-            <iframe
-              className="h-48 aspect-video rounded-xl"
-              src={video}
-              title="Movie Trailer"
-              allowFullScreen
-            ></iframe>
-          </div>
-        )}
+      <HorizontalScroll scrollRef={containerRef}>
+        <div
+          ref={containerRef}
+          className="flex overflow-x-scroll gap-2 lg:gap-3 lg:mx-2.5 py-2 lg:py-4 scrollbar-hide scroll-smooth"
+        >
+          {/* Trailer */}
+          {video && (
+            <div className="w-full max-w-4xl mx-auto">
+              <iframe
+                className="h-48 aspect-video rounded-lg"
+                src={video}
+                title="Movie Trailer"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
 
-        {/* Images  */}
+          {/* Images  */}
 
-        {images.map((image, index) => {
-          return (
-            <img
-              className="h-48 rounded-xl object-cover"
-              key={index}
-              src={image}
-              alt={`Backdrop of the movie: ${id}`}
-              loading="lazy"
-            />
-          );
-        })}
-      </div>
+          {images.map((image, index) => {
+            return (
+              <img
+                className="h-48 rounded-lg object-cover"
+                key={index}
+                src={image}
+                alt={`Backdrop of the movie: ${id}`}
+                loading="lazy"
+              />
+            );
+          })}
+        </div>
+      </HorizontalScroll>
       {error && <Error />}
     </>
   );

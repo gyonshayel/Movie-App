@@ -5,6 +5,7 @@ import { VideoAndImages } from "./Video&Images";
 import { Cast } from "./Cast";
 import { Reviews } from "./Reviews";
 import { MovieList } from "../../components/MovieList";
+import { Separator } from "../../components/ui/separator";
 
 export function MovieDetailsPage({ apiKey }) {
   const { id } = useParams();
@@ -16,9 +17,13 @@ export function MovieDetailsPage({ apiKey }) {
   return (
     <section className="container">
       <TopLevelDetails apiKey={apiKey} />
+      <Separator className="my-6" />
       <VideoAndImages apiKey={apiKey} />
+      <Separator className="my-6" />
       <Cast apiKey={apiKey} />
+      <Separator className="my-6" />
       <Reviews apiKey={apiKey} />
+      <Separator className="my-6" />
       <MovieList
         key={id}
         id={"similar-movies"}
