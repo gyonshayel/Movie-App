@@ -92,7 +92,7 @@ export function Header({ apiKey }) {
         showDropdown={showDropdown}
         setShowDropdown={setShowDropdown}
       />
-      {error && <Error />}
+      {error && <Error message={error} />}
     </header>
   );
 }

@@ -50,7 +50,7 @@ export function Cast({ apiKey }) {
           })}
         </div>
       </HorizontalScroll>
-      {error && <Error />}
+      {error && <Error message={error} />}
     </>
   );
 }

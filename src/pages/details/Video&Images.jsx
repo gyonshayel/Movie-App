@@ -96,7 +96,7 @@ export function VideoAndImages({ apiKey }) {
           })}
         </div>
       </HorizontalScroll>
-      {error && <Error />}
+      {error && <Error message={error} />}
     </>
   );
 }

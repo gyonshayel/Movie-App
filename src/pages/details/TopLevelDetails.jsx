@@ -103,7 +103,7 @@ export function TopLevelDetails({ apiKey }) {
           </AccordionItem>
         </Accordion>
       </div>
-      {error && <Error />}
+      {error && <Error message={error} />}
     </>
   );
 }

@@ -1,7 +1,12 @@
+import { AlertCircleIcon } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+
 export function Error({ message }) {
   return (
-    <>
-      <div>{message}</div>
-    </>
+    <Alert variant="destructive">
+      <AlertCircleIcon />
+      <AlertTitle>Error</AlertTitle>
+      <AlertDescription>{message}</AlertDescription>
+    </Alert>
   );
 }

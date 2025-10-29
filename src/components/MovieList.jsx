@@ -57,6 +57,7 @@ export function MovieList({ id, url, listName, onResults = null }) {
       if (onResults) onResults(data.total_results || 0);
     } catch (error) {
       if (error.name !== "AbortError") setError(error.message);
+      error && setHasMore(false);
     } finally {
       setLoading(false);
     }
@@ -68,7 +69,7 @@ export function MovieList({ id, url, listName, onResults = null }) {
 
   // Infinite scroll observer
   useEffect(() => {
-    if (!hasMore || loading) return;
+    if (!hasMore || loading || error) return;
 
     const container = document.getElementById(id);
     const observer = new IntersectionObserver(
@@ -82,7 +83,7 @@ export function MovieList({ id, url, listName, onResults = null }) {
 
     if (observerRef.current) observer.observe(observerRef.current);
     return () => observer.disconnect();
-  }, [hasMore, loading, id]);
+  }, [hasMore, loading, id, error]);
 
   return (
     <div className="pb-8">
@@ -117,7 +118,7 @@ export function MovieList({ id, url, listName, onResults = null }) {
         </div>
       </HorizontalScroll>
 
-      {error && <Error />}
+      {error && <Error message={error} />}
     </div>
   );
 }
