@@ -19,20 +19,18 @@ export function HorizontalScroll({ children, scrollRef }) {
         onClick={() => scroll("left")}
         variant="ghost"
         size="icon"
-        className="hidden lg:block absolute -left-2 top-1/2 -translate-y-1/2 z-10 cursor-pointer rounded-full bg-background/90 opacity-20 hover:opacity-90 transition-opacity duration-300"
+        className="hidden lg:block absolute -left-2 top-1/2 -translate-y-1/2 z-10 rounded-full"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
           viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="size-9"
+          fill="currentColor"
+          className="size-6"
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            fillRule="evenodd"
+            d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
+            clipRule="evenodd"
           />
         </svg>
       </Button>
@@ -45,20 +43,18 @@ export function HorizontalScroll({ children, scrollRef }) {
         onClick={() => scroll("right")}
         variant="ghost"
         size="icon"
-        className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-10 cursor-pointer rounded-full bg-background/90 opacity-20 hover:opacity-90 transition-opacity duration-300"
+        className="hidden lg:flex justify-end items-center absolute -right-2 top-1/2 -translate-y-1/2 z-10 rounded-full"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
           viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="size-9"
+          fill="currentColor"
+          className="size-6"
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            fillRule="evenodd"
+            d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+            clipRule="evenodd"
           />
         </svg>
       </Button>

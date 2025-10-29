@@ -47,7 +47,7 @@ export function Header({ apiKey }) {
 
   return (
     <header
-      className="flex justify-between items-center sticky top-0 z-50 
+      className="flex justify-between items-center sticky top-0 z-40 
       px-2 sm:px-3 md:px-4 xl:px-5
       py-3 md:py-4 xl:py-5 
       mb-2 sm:mb-3 md:mb-4 xl:mb-5

@@ -4,6 +4,15 @@ import { Error } from "./Error";
 import { MovieCard } from "./MovieCard";
 import { getYear } from "../utils/getYear";
 import { HorizontalScroll } from "./HorizontalScroll";
+import { Button } from "../components/ui/button";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "../components/ui/empty";
 
 export function MovieList({ id, url, listName, onResults = null }) {
   const [movieList, setMovieList] = useState([]);
@@ -45,7 +54,7 @@ export function MovieList({ id, url, listName, onResults = null }) {
         setHasMore(false);
       }
 
-      if (onResults) onResults(data.total_results);
+      if (onResults) onResults(data.total_results || 0);
     } catch (error) {
       if (error.name !== "AbortError") setError(error.message);
     } finally {

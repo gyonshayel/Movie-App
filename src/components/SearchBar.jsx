@@ -61,7 +61,7 @@ export function SearchBar({
         />
         {/* Suggestion Dropdown */}
         {showDropdown && suggestions.length > 0 && (
-          <ul className="absolute left-0 top-full z-40 text-sm lg:text-base bg-background/90 backdrop-blur-2xl border border-border rounded-md overflow-y-auto w-full">
+          <ul className="absolute left-0 top-full text-sm lg:text-base bg-background/90 backdrop-blur-2xl border border-border rounded-md overflow-y-auto w-full">
             {suggestions.map((movie) => (
               <li
                 key={movie.id}
