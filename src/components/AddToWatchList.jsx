@@ -18,7 +18,7 @@ export function AddToWatchList({ movieId, name, year, poster }) {
       disabled={!movieId || !name || !year || !poster}
       variant="outline"
       size="icon"
-      className="rounded-full transition-transform duration-200"
+      className="rounded-full"
       aria-label="Add/remove from watch list"
     >
       {isClicked === true ? (
@@ -54,7 +54,7 @@ export function AddToWatchList({ movieId, name, year, poster }) {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={1.5}
+          strokeWidth={2}
           stroke="currentColor"
           className="size-5"
         >
