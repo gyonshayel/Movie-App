@@ -17,7 +17,10 @@ export function ReviewCard({ avatar, username, rating, review }) {
       <CardHeader className="grid-cols-[auto_1fr] gap-0 lg:gap-1 p-1">
         <Avatar className="row-span-2 my-auto mr-2">
           <AvatarImage
-            src={avatar || "https://placehold.co/200x300"}
+            src={
+              avatar ||
+              `https://avatar.iran.liara.run/username?username=${username}`
+            }
             alt={`@${username}`}
           />
         </Avatar>

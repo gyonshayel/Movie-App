@@ -14,14 +14,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../../components/ui/accordion";
+import { TopLevelDetailsSkeleton } from "./TopLevelDetailsSkeleton";
 
 export function TopLevelDetails({ apiKey }) {
   const { id } = useParams();
   const [movieData, setMovieData] = useState({});
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchMovieData = async () => {
     try {
+      setLoading(true);
+
       const apiCall = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
       const response = await fetch(apiCall);
 
@@ -31,6 +35,8 @@ export function TopLevelDetails({ apiKey }) {
       setMovieData(data);
     } catch (error) {
       if (error.name !== "AbortError") setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,63 +55,72 @@ export function TopLevelDetails({ apiKey }) {
   } = movieData;
   const poster = poster_path
     ? `https://image.tmdb.org/t/p/original/${poster_path}`
-    : "https://placehold.co/200x300";
+    : "https://placehold.co/200x300?text=Poster+N/A";
 
   return (
     <>
-      <div className="grid grid-cols-[auto_1fr] gap-4 lg:gap-6">
-        <div>
-          <img
-            className="min-w-[125px] lg:min-w-[150px] max-w-[150px] h-auto rounded-md object-cover aspect-[2/3]"
-            src={poster}
-            alt={`Poster of ${title}`}
-          />
-        </div>
-        <div className="flex flex-col gap-2 lg:gap-2">
-          <h1 className="text-2xl lg:text-3xl line-clamp-3 font-bold">
-            {title} -{" "}
-            <span className="text-base lg:text-lg text-muted-foreground">
-              {release_date && getYear(release_date)}
-            </span>
-          </h1>
-          <div className="flex-1">
-            <Genres genres={genres} />
+      {loading ? (
+        <TopLevelDetailsSkeleton />
+      ) : (
+        <div className="grid grid-cols-[auto_1fr] gap-4 lg:gap-6">
+          <div>
+            <img
+              className="min-w-[125px] lg:min-w-[150px] max-w-[150px] h-auto rounded-md object-cover aspect-[2/3]"
+              src={poster}
+              alt={`Poster of ${title}`}
+            />
           </div>
-          <Badge variant="outline" className="text-lg py-[3px]">
-            <StarIcon className="[svg]:fill-yellow-500 [svg]:stroke-yellow-500" />{" "}
-            {vote_average?.toFixed(1)}/10
-          </Badge>
-          <ToggleGroup type="multiple" variant="outline" spacing={2} size="sm">
-            <AddToWatchList
-              movieId={movieId}
-              name={title}
-              year={getYear(release_date)}
-              poster={poster}
-            />
-            <AddToFavorites
-              movieId={movieId}
-              name={title}
-              year={getYear(release_date)}
-              poster={poster}
-            />
-          </ToggleGroup>
+          <div className="flex flex-col gap-2 lg:gap-2">
+            <h1 className="text-2xl lg:text-3xl line-clamp-3 font-bold">
+              {title} -{" "}
+              <span className="text-base lg:text-lg text-muted-foreground">
+                {release_date && getYear(release_date)}
+              </span>
+            </h1>
+            <div className="flex-1">
+              <Genres genres={genres} />
+            </div>
+            <Badge variant="outline" className="text-lg py-[3px]">
+              <StarIcon className="[svg]:fill-yellow-500 [svg]:stroke-yellow-500" />{" "}
+              {vote_average?.toFixed(1)}/10
+            </Badge>
+            <ToggleGroup
+              type="multiple"
+              variant="outline"
+              spacing={2}
+              size="sm"
+            >
+              <AddToWatchList
+                movieId={movieId}
+                name={title}
+                year={getYear(release_date)}
+                poster={poster}
+              />
+              <AddToFavorites
+                movieId={movieId}
+                name={title}
+                year={getYear(release_date)}
+                poster={poster}
+              />
+            </ToggleGroup>
+          </div>
+          <Accordion
+            type="single"
+            collapsible
+            className="col-span-2 border-2 border-border rounded-4xl px-4"
+          >
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="py-4 text-2xl lg:text-3xl font-medium">
+                Overview
+              </AccordionTrigger>
+              <AccordionContent className="text-base text-left text-balance">
+                {overview}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+          {error && <Error message={error} />}
         </div>
-        <Accordion
-          type="single"
-          collapsible
-          className="col-span-2 border-2 border-border rounded-4xl px-4"
-        >
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="py-4 text-2xl lg:text-3xl font-medium">
-              Overview
-            </AccordionTrigger>
-            <AccordionContent className="text-base text-left text-balance">
-              {overview}
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
-      {error && <Error message={error} />}
+      )}
     </>
   );
 }

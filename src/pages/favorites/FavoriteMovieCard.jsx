@@ -19,7 +19,7 @@ export function FavoriteMovieCard({ movieId, name, year, poster, onRemove }) {
       <CardContent className="p-0.5">
         <Link to={`/search/${movieId}/details`}>
           <img
-            src={poster || "https://placehold.co/200x300"}
+            src={poster || "https://placehold.co/200x300?text=Poster+N/A"}
             alt={`Poster of ${name}`}
             loading="lazy"
             className="w-full h-auto rounded-md object-cover aspect-[2/3]"

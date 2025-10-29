@@ -12,7 +12,7 @@ export function CastCard({ name, character, profile }) {
     <Card className="group relative gap-0.5 p-1 lg:p-2 min-w-[125px] lg:min-w-[150px] max-w-[150px]">
       <CardContent className="p-0.5">
         <img
-          src={profile || "https://placehold.co/200x300"}
+          src={profile || "https://placehold.co/200x300?text=Image+N/A"}
           alt={`Image of ${name}`}
           loading="lazy"
           className="w-full h-auto rounded-md object-cover aspect-[2/3]"
