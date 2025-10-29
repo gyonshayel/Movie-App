@@ -65,7 +65,7 @@ export function TopLevelDetails({ apiKey }) {
         <div className="grid grid-cols-[auto_1fr] gap-4 lg:gap-6">
           <div>
             <img
-              className="min-w-[125px] lg:min-w-[150px] max-w-[150px] h-auto rounded-md object-cover aspect-[2/3]"
+              className="min-w-[125px] lg:min-w-[150px] max-w-[150px] h-auto rounded-md object-cover aspect-[2/3] border border-border"
               src={poster}
               alt={`Poster of ${title}`}
             />
@@ -80,7 +80,10 @@ export function TopLevelDetails({ apiKey }) {
             <div className="flex-1">
               <Genres genres={genres} />
             </div>
-            <Badge variant="outline" className="text-lg py-[3px]">
+            <Badge
+              variant="outline"
+              className="text-lg py-[3px] border-background"
+            >
               <StarIcon className="[svg]:fill-yellow-500 [svg]:stroke-yellow-500" />{" "}
               {vote_average?.toFixed(1)}/10
             </Badge>
@@ -113,7 +116,7 @@ export function TopLevelDetails({ apiKey }) {
               <AccordionTrigger className="py-4 text-2xl lg:text-3xl font-medium">
                 Overview
               </AccordionTrigger>
-              <AccordionContent className="text-base text-left text-balance">
+              <AccordionContent className="text-base text-muted-foreground">
                 {overview}
               </AccordionContent>
             </AccordionItem>

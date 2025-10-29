@@ -22,7 +22,7 @@ export function MovieList({ id, url, listName, onResults = null }) {
       setError(null);
 
       // Wait before calling the API (simulate delay)
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
       // Record current scroll position
       const scrollLeftBefore = containerRef.current?.scrollLeft || 0;

@@ -7,7 +7,7 @@ export function Genres({ genres }) {
         <Badge
           key={genre.id}
           variant="secondary"
-          className="text-base font-light"
+          className="text-base font-medium"
         >
           {genre.name}
         </Badge>

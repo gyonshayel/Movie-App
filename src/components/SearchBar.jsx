@@ -50,7 +50,7 @@ export function SearchBar({
     <form className="flex gap-2 md:gap-4 px-2 lg:p-0 m-auto max-w-3xl">
       <div ref={dropdownRef} className="w-full relative">
         <Input
-          className="text-sm lg:text-base px-2 lg:px-4 rounded-2xl"
+          className="text-sm lg:text-base px-2 lg:px-4 rounded-2xl focus:bg-muted"
           autoFocus={autoFocus}
           id="search"
           type="text"
@@ -61,7 +61,7 @@ export function SearchBar({
         />
         {/* Suggestion Dropdown */}
         {showDropdown && suggestions.length > 0 && (
-          <ul className="absolute left-0 top-full text-sm lg:text-base bg-background/90 backdrop-blur-2xl border border-border rounded-md overflow-y-auto w-full">
+          <ul className="absolute left-0 top-full text-sm lg:text-base bg-muted border border-border rounded-md overflow-y-auto w-full">
             {suggestions.map((movie) => (
               <li
                 key={movie.id}
@@ -80,7 +80,7 @@ export function SearchBar({
         )}
       </div>
       <Button
-        className="rounded-full"
+        className="rounded-full bg-transparent"
         variant="outline"
         size="icon"
         aria-label="Submit"
@@ -89,14 +89,16 @@ export function SearchBar({
         <svg
           id="search-btn__icon"
           xmlns="http://www.w3.org/2000/svg"
+          fill="none"
           viewBox="0 0 24 24"
-          fill="currentColor"
+          strokeWidth={2}
+          stroke="currentColor"
           className="size-5"
         >
           <path
-            fillRule="evenodd"
-            d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-            clipRule="evenodd"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
           />
         </svg>
       </Button>
