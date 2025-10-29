@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className="bg-accent border-t mt-2 sm:mt-3 md:mt-4 xl:mt-5">
       <div
-        className="container flex justify-between items-center px-2 sm:px-3 md:px-4 xl:px-5
+        className="flex justify-between items-center px-2 sm:px-3 md:px-4 xl:px-5
       py-3 md:py-4 xl:py-5"
       >
         <span>
