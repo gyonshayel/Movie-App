@@ -18,7 +18,7 @@ export function AddToWatchList({ movieId, name, year, poster }) {
       disabled={!movieId || !name || !year || !poster}
       variant="outline"
       size={pathname === `/search/${movieId}/details` ? "default" : "icon"}
-      className="rounded-full"
+      className="rounded-full !px-2"
       aria-label="Add/remove from watch list"
     >
       {isClicked === true ? (

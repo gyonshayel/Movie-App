@@ -62,16 +62,16 @@ export function TopLevelDetails({ apiKey }) {
           />
         </div>
         <div className="flex flex-col gap-2 lg:gap-2">
-          <h1 className="text-xl lg:text-xl line-clamp-3">
+          <h1 className="text-2xl lg:text-3xl line-clamp-3 font-bold">
             {title} -{" "}
-            <span className="text-sm lg:text-base text-muted-foreground">
+            <span className="text-base lg:text-lg text-muted-foreground">
               {release_date && getYear(release_date)}
             </span>
           </h1>
           <div className="flex-1">
             <Genres genres={genres} />
           </div>
-          <Badge variant="outline" className="text-base ">
+          <Badge variant="outline" className="text-lg py-[3px]">
             <StarIcon className="[svg]:fill-yellow-500 [svg]:stroke-yellow-500" />{" "}
             {vote_average?.toFixed(1)}/10
           </Badge>
@@ -96,7 +96,9 @@ export function TopLevelDetails({ apiKey }) {
           className="col-span-2 border-2 border-border rounded-4xl px-4"
         >
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg">Overview</AccordionTrigger>
+            <AccordionTrigger className="py-4 text-2xl lg:text-3xl font-medium">
+              Overview
+            </AccordionTrigger>
             <AccordionContent className="text-base text-balance">
               {overview}
             </AccordionContent>

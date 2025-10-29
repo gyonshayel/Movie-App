@@ -13,7 +13,7 @@ import { ScrollArea } from "../../components/ui/scroll-area";
 
 export function ReviewCard({ avatar, username, rating, review }) {
   return (
-    <Card className="group relative gap-0.5 p-1 lg:p-2 min-w-[250px] lg:min-w-[300px] max-w-[300px]">
+    <Card className="group relative gap-0.5 p-1 lg:p-2 min-w-[300px] lg:min-w-[350px] max-w-[350px]">
       <CardHeader className="grid-cols-[auto_1fr] gap-0 lg:gap-1 p-1">
         <Avatar className="row-span-2 my-auto mr-2">
           <AvatarImage
@@ -30,9 +30,7 @@ export function ReviewCard({ avatar, username, rating, review }) {
         </CardDescription>
       </CardHeader>
       <CardContent className="p-0">
-        <ScrollArea className="text-sm h-36 p-2 rounded-md border">
-          {review}
-        </ScrollArea>
+        <ScrollArea className="text-sm text-left h-36 p-2">{review}</ScrollArea>
       </CardContent>
     </Card>
   );

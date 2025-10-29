@@ -22,7 +22,7 @@ export function CastCard({ name, character, profile }) {
         <CardTitle className="text-sm lg:text-base line-clamp-2">
           {name}
         </CardTitle>
-        <CardDescription className="text-sm lg:text-base">{`as ${character}`}</CardDescription>
+        <CardDescription className="text-xs lg:text-sm">{`as ${character}`}</CardDescription>
       </CardHeader>
     </Card>
   );

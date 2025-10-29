@@ -18,10 +18,13 @@ export function MovieDetailsPage({ apiKey }) {
     <section className="container">
       <TopLevelDetails apiKey={apiKey} />
       <Separator className="my-6" />
+      <h2 className="text-2xl lg:text-3xl font-medium">Videos & Photos</h2>
       <VideoAndImages apiKey={apiKey} />
       <Separator className="my-6" />
+      <h2 className="text-2xl lg:text-3xl font-medium">Cast</h2>
       <Cast apiKey={apiKey} />
       <Separator className="my-6" />
+      <h2 className="text-2xl lg:text-3xl font-medium">User Reviews</h2>
       <Reviews apiKey={apiKey} />
       <Separator className="my-6" />
       <MovieList
