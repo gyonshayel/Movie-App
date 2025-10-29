@@ -99,7 +99,7 @@ export function TopLevelDetails({ apiKey }) {
             <AccordionTrigger className="py-4 text-2xl lg:text-3xl font-medium">
               Overview
             </AccordionTrigger>
-            <AccordionContent className="text-base text-balance">
+            <AccordionContent className="text-base text-left text-balance">
               {overview}
             </AccordionContent>
           </AccordionItem>

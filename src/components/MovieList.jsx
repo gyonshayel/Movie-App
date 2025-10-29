@@ -4,21 +4,11 @@ import { Error } from "./Error";
 import { MovieCard } from "./MovieCard";
 import { getYear } from "../utils/getYear";
 import { HorizontalScroll } from "./HorizontalScroll";
-import { Button } from "../components/ui/button";
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "../components/ui/empty";
 
 export function MovieList({ id, url, listName, onResults = null }) {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const observerRef = useRef(null);
@@ -86,7 +76,7 @@ export function MovieList({ id, url, listName, onResults = null }) {
   }, [hasMore, loading, id, error]);
 
   return (
-    <div className="pb-8">
+    <div>
       <h2 className="text-2xl lg:text-3xl font-medium">{listName}</h2>
 
       <HorizontalScroll scrollRef={containerRef}>

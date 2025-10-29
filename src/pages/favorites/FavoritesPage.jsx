@@ -54,7 +54,9 @@ export function FavoritesPage() {
 
   return (
     <section className="container pb-8">
-      <h2 className="text-2xl lg:text-3xl font-medium">Favorites</h2>
+      <h2 className="text-2xl lg:text-3xl font-medium text-center lg:text-start">
+        Favorites
+      </h2>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(125px,150px))] justify-center lg:justify-start gap-2 lg:gap-3 py-2 lg:py-4">
         {favoritesArray.map((item) => {
           return (
