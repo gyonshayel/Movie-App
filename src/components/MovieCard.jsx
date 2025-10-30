@@ -16,7 +16,7 @@ export function MovieCard({ movieId, name, year, poster }) {
       <Link to={`/movie/${movieId}/details`}>
         <CardContent className="p-0.5">
           <img
-            src={poster || "https://placehold.co/200x300?text=Poster+N/A"}
+            src={poster}
             alt={`Poster of ${name}`}
             loading="lazy"
             className="w-full h-auto rounded-md object-cover aspect-[2/3]"

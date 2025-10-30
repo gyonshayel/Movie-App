@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import { MovieList } from "../../components/MovieList";
 import {
   Empty,
-  EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,

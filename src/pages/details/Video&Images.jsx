@@ -101,11 +101,11 @@ export function VideoAndImages({ apiKey }) {
 
             {/* Images  */}
 
-            {images.map((image, index) => {
+            {images.map((image) => {
               return (
                 <img
+                  key={image}
                   className="h-48 rounded-lg object-cover"
-                  key={index}
                   src={image}
                   alt={`Backdrop of the movie: ${id}`}
                   loading="lazy"

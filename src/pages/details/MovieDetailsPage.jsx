@@ -8,11 +8,9 @@ import { MovieList } from "../../components/MovieList";
 import { Separator } from "../../components/ui/separator";
 import {
   Empty,
-  EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
-  EmptyTitle,
 } from "../../components/ui/empty";
 
 export function MovieDetailsPage({ apiKey }) {
@@ -20,6 +18,7 @@ export function MovieDetailsPage({ apiKey }) {
   const { id } = useParams();
 
   useEffect(() => {
+    setHasSimilar(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
 

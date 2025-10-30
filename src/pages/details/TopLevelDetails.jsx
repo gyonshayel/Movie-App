@@ -72,7 +72,7 @@ export function TopLevelDetails({ apiKey }) {
           </div>
           <div className="flex flex-col gap-2 lg:gap-2">
             <h1 className="text-2xl lg:text-3xl line-clamp-3 font-bold">
-              {title} -{" "}
+              {title || "Untitled Movie"} -{" "}
               <span className="text-base lg:text-lg text-muted-foreground">
                 {release_date && getYear(release_date)}
               </span>
@@ -85,7 +85,7 @@ export function TopLevelDetails({ apiKey }) {
               className="text-lg py-[3px] border-background"
             >
               <StarIcon className="[svg]:fill-yellow-500 [svg]:stroke-yellow-500" />{" "}
-              {vote_average?.toFixed(1)}/10
+              {vote_average ? `${vote_average.toFixed(1)}/10` : "N/A"}
             </Badge>
             <ToggleGroup
               type="multiple"
@@ -117,13 +117,13 @@ export function TopLevelDetails({ apiKey }) {
                 Overview
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground">
-                {overview}
+                {overview || "No overview available for this title."}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          {error && <Error message={error} />}
         </div>
       )}
+      {error && <Error message={error} />}
     </>
   );
 }

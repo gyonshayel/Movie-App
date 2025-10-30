@@ -28,7 +28,7 @@ export function SearchBar({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  });
+  }, [setShowDropdown]);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -42,12 +42,18 @@ export function SearchBar({
   const handleSelect = (movie) => {
     setQuery("");
     if (searchBarFor !== null) setOpen(false);
-    navigate(`/search/${encodeURIComponent(movie.id)}/details`);
+    navigate(`/movie/${movie.id}/details`);
   };
 
   return (
-    <form className="flex gap-2 md:gap-4 px-2 lg:p-0 m-auto max-w-3xl">
+    <form
+      onSubmit={handleSearch}
+      className="flex gap-2 md:gap-4 px-2 lg:p-0 m-auto max-w-3xl"
+    >
       <div ref={dropdownRef} className="w-full relative">
+        <label htmlFor="search" className="sr-only">
+          Search
+        </label>
         <Input
           className="text-sm lg:text-base px-2 lg:px-4 rounded-2xl focus:bg-muted"
           id="search"
@@ -63,7 +69,9 @@ export function SearchBar({
             {suggestions.map((movie) => (
               <li
                 key={movie.id}
+                tabIndex={0}
                 onMouseDown={() => handleSelect(movie)}
+                onKeyDown={(e) => e.key === "Enter" && handleSelect(movie)}
                 className="px-2 lg:px-4 py-2 lg:py-4 cursor-pointer"
               >
                 {movie.title}{" "}
@@ -82,7 +90,6 @@ export function SearchBar({
         variant="outline"
         size="icon"
         aria-label="Submit"
-        onClick={handleSearch}
       >
         <svg
           id="search-btn__icon"

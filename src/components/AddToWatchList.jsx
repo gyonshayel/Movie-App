@@ -17,7 +17,7 @@ export function AddToWatchList({ movieId, name, year, poster }) {
       onClick={handleClick}
       disabled={!movieId || !name || !year || !poster}
       variant="outline"
-      size={pathname === `/search/${movieId}/details` ? "default" : "icon"}
+      size={pathname === `/movie/${movieId}/details` ? "default" : "icon"}
       className="rounded-full !px-2 bg-accent"
       aria-label="Add/remove from watch list"
     >
@@ -65,7 +65,7 @@ export function AddToWatchList({ movieId, name, year, poster }) {
           />
         </svg>
       )}
-      {pathname === `/search/${movieId}/details` && (
+      {pathname === `/movie/${movieId}/details` && (
         <span className="hidden lg:block">Watch Later</span>
       )}
     </Button>

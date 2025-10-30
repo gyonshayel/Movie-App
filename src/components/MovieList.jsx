@@ -92,14 +92,18 @@ export function MovieList({ id, url, listName, onResults = null }) {
               id={id}
               className="flex overflow-x-scroll gap-2 lg:gap-3 lg:mx-2.5 py-2 lg:py-4 scrollbar-hide scroll-smooth"
             >
-              {movieList.map((item, index) => {
+              {movieList.map((item) => {
                 return (
                   <MovieCard
-                    key={index}
+                    key={item.id}
                     movieId={item.id}
                     name={item.title}
                     year={getYear(item.release_date)}
-                    poster={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    poster={
+                      item.poster_path
+                        ? `https://image.tmdb.org/t/p/original/${item.poster_path}`
+                        : "https://placehold.co/200x300?text=Poster+N/A"
+                    }
                   />
                 );
               })}
@@ -116,10 +120,9 @@ export function MovieList({ id, url, listName, onResults = null }) {
               )}
             </div>
           </HorizontalScroll>
-
-          {error && <Error message={error} />}
         </div>
       )}
+      {error && <Error message={error} />}
     </>
   );
 }
