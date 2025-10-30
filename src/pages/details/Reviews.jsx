@@ -35,6 +35,7 @@ export function Reviews({ apiKey }) {
 
   useEffect(() => {
     fetchReviews();
+    containerRef.current.scrollTo({ left: 0, behavior: "smooth" });
   }, [id, apiKey]);
 
   useEffect(() => {

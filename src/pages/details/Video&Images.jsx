@@ -69,6 +69,7 @@ export function VideoAndImages({ apiKey }) {
   useEffect(() => {
     fetchVideo();
     fetchImages();
+    containerRef.current.scrollTo({ left: 0, behavior: "smooth" });
   }, [id, apiKey]);
 
   useEffect(() => {

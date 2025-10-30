@@ -35,6 +35,7 @@ export function Cast({ apiKey }) {
 
   useEffect(() => {
     fetchCastData();
+    containerRef.current.scrollTo({ left: 0, behavior: "smooth" });
   }, [id, apiKey]);
 
   useEffect(() => {
