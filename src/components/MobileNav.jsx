@@ -41,7 +41,6 @@ export function MobileNav({
         <div>
           <SearchBar
             searchBarFor={"mobile"}
-            autoFocus={true}
             query={query}
             setQuery={setQuery}
             suggestions={suggestions}

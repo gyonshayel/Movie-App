@@ -6,7 +6,6 @@ import { Button } from "./ui/button";
 
 export function SearchBar({
   searchBarFor = null,
-  autoFocus = false,
   query,
   setQuery,
   suggestions,
@@ -51,7 +50,6 @@ export function SearchBar({
       <div ref={dropdownRef} className="w-full relative">
         <Input
           className="text-sm lg:text-base px-2 lg:px-4 rounded-2xl focus:bg-muted"
-          autoFocus={autoFocus}
           id="search"
           type="text"
           placeholder="Search for movies & tv shows"
