@@ -35,7 +35,7 @@ export function MobileNav({
         </Button>
       </SheetTrigger>
 
-      <SheetContent>
+      <SheetContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <SheetHeader className="px-2 pb-0">
           <SheetTitle className={"text-2xl"}>Search</SheetTitle>
           <SheetDescription className="sr-only">
