@@ -23,7 +23,7 @@ export function SearchResultsPage({ apiKey }) {
       />
 
       {!hasResults && (
-        <Empty className="border border-dashed">
+        <Empty className="border border-dashed my-2">
           <EmptyHeader>
             <EmptyMedia variant="icon">
               <svg

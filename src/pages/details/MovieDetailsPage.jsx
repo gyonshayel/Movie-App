@@ -53,7 +53,7 @@ export function MovieDetailsPage({ apiKey }) {
         />
 
         {!hasSimilar && (
-          <Empty className="border border-dashed">
+          <Empty className="border border-dashed lg:mx-2.5 my-2">
             <EmptyHeader>
               <EmptyMedia variant="icon">
                 <svg
