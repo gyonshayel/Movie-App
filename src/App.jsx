@@ -27,7 +27,7 @@ function App() {
                   element={<SearchResultsPage apiKey={apiKey} />}
                 />
                 <Route
-                  path="/search/:id/details"
+                  path="/movie/:id/details"
                   element={<MovieDetailsPage apiKey={apiKey} />}
                 />
                 <Route path="/watchlist" element={<WatchListPage />} />
