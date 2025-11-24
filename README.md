@@ -27,7 +27,7 @@
 - **Framework / Library:** React / Shadcn UI Library
 - **Styling:** Tailwind CSS
 - **Build Tool:** Vite
-- **API / Data:** TMDB API
+- **API / Data:** [TMDB API](https://www.themoviedb.org/)
 
 ---
 
